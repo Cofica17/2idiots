@@ -24,6 +24,10 @@ config/name="2 Idiots"
 run/main_scene="res://scenes/Test.tscn"
 config/icon="res://icon.png"
 
+[display]
+
+window/size/width=1000
+
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true

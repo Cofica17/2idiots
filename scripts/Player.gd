@@ -13,7 +13,7 @@ export var jump_strength = 15
 
 var velocity = Vector3.ZERO
 
-func _ready() -> void:
+func _ready():
 	pass
 
 func set_character_model(v) -> void:
@@ -25,14 +25,14 @@ func set_character_model(v) -> void:
 		child.queue_free()
 	$Model.add_child(character_model.instance())
 
-func _physics_process(delta) -> void:
+func _physics_process(delta):
 	apply_gravity(delta)
 	handle_movement()
 	handle_jump()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func handle_jump() -> void:
-	if Input.is_action_pressed("jump") and self.is_on_floor():
+	if Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = jump_strength
 
 func apply_gravity(delta) -> void:

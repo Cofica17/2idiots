@@ -38,31 +38,19 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func handle_jump() -> void:
-	if Input.is_action_pressed("jump") and is_on_floor():
-		is_double_jumping = false
-		if Input.is_action_pressed("walk"):
-			is_walk_jumping = true
-			velocity.y = jump_strength * jump_strength_walk_modifier
-		else:
-			is_walk_jumping = false
-			velocity.y = jump_strength 
-		return
-		
-	elif Input.is_action_just_pressed("jump") and !is_double_jumping and !is_on_floor():
-		is_double_jumping = true
-		if is_walk_jumping:
-			velocity.y = jump_strength * jump_strength_walk_modifier
-			print("Double Walk Jump")
-		else:
-			velocity.y = jump_strength
-			print("Double Run Jump")
-		
+	if Input.is_action_just_pressed("jump"):
+		if is_on_floor():
+			is_double_jumping = false
+			velocity.y = jump_strength * max((velocity.length() / running_speed), 0.4)
+		elif !is_double_jumping:
+			is_double_jumping = true
+			velocity.y = jump_strength * max((velocity.length() / running_speed), 0.4)
+
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta
 
 func handle_movement() -> void:
 	var vel_y = velocity.y
-	print(velocity.length())
 	var speed = 0
 	if is_on_floor():
 		velocity = lerp(velocity, Vector3.ZERO, stopping_speed_ground)
@@ -76,6 +64,7 @@ func handle_movement() -> void:
 		
 	if Input.is_action_pressed("move_forward"):
 		velocity = global_transform.basis.z * speed
+		$Model/black_man/RootNode/AnimationPlayer.play("running")
 	if Input.is_action_pressed("move_back"):
 		velocity = -global_transform.basis.z * speed
 	

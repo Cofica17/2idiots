@@ -14,6 +14,8 @@ export var gravity = Vector3(0, -35, 0)
 export var jump_strength = 15
 export var jump_strength_walk_modifier = 0.7
 export var backward_speed_modifier = 0.5
+
+var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var is_double_jumping = false
 var is_walk_jumping = false
 
@@ -32,9 +34,10 @@ func set_character_model(v) -> void:
 	$Model.add_child(character_model.instance())
 
 func _physics_process(delta):
-	apply_gravity(delta)
-	handle_movement()
-	handle_jump()
+	apply_gravity(delta) #TODO move to locomotion
+#	handle_movement()
+#	handle_jump()
+	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func handle_jump() -> void:

@@ -9,13 +9,49 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "State",
+"class": "Idle",
+"language": "GDScript",
+"path": "res://scripts/states/Idle.gd"
+}, {
+"base": "Reference",
+"class": "LocomotionStates",
+"language": "GDScript",
+"path": "res://scripts/LocomotionStates.gd"
+}, {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
 "path": "res://scripts/Player.gd"
+}, {
+"base": "Reference",
+"class": "PlayerLocomotion",
+"language": "GDScript",
+"path": "res://scripts/PlayerLocomotion.gd"
+}, {
+"base": "State",
+"class": "Run",
+"language": "GDScript",
+"path": "res://scripts/states/Run.gd"
+}, {
+"base": "Reference",
+"class": "State",
+"language": "GDScript",
+"path": "res://scripts/State.gd"
+}, {
+"base": "State",
+"class": "Walk",
+"language": "GDScript",
+"path": "res://scripts/states/Walk.gd"
 } ]
 _global_script_class_icons={
-"Player": ""
+"Idle": "",
+"LocomotionStates": "",
+"Player": "",
+"PlayerLocomotion": "",
+"Run": "",
+"State": "",
+"Walk": ""
 }
 
 [application]

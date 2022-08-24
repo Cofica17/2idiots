@@ -6,6 +6,7 @@ var state setget set_state
 var idle = Idle.new()
 var run = Run.new()
 var walk = Walk.new()
+var jump = Jump.new()
 
 func _init(_player):
 	player = _player
@@ -29,3 +30,6 @@ func set_walk_state():
 
 func set_run_state():
 	set_state(run)
+	
+func set_jump_state():
+	set_state(jump)

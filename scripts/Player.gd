@@ -34,9 +34,7 @@ func set_character_model(v) -> void:
 	$Model.add_child(character_model.instance())
 
 func _physics_process(delta):
-	apply_gravity(delta) #TODO move to locomotion
-#	handle_movement()
-#	handle_jump()
+	apply_gravity(delta)
 	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
@@ -51,30 +49,4 @@ func handle_jump() -> void:
 
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta
-
-func handle_movement() -> void:
-	var vel_y = velocity.y
-	var speed = 0
-	if is_on_floor():
-		velocity = lerp(velocity, Vector3.ZERO, stopping_speed_ground)
-	else:
-		velocity = lerp(velocity, Vector3.ZERO, stopping_speed_ground_air)
-	
-	if Input.is_action_pressed("walk") and is_on_floor():
-		speed = walking_speed
-	else:
-		speed = running_speed
-		
-	if Input.is_action_pressed("move_forward"):
-		velocity = global_transform.basis.z * speed
-		$Model/black_man/RootNode/AnimationPlayer.play("running")
-	if Input.is_action_pressed("move_back"):
-		velocity = -global_transform.basis.z * speed
-	
-	if Input.is_action_pressed("move_left"):
-		rotate_y(turn_angle)
-	if Input.is_action_pressed("move_right"):
-		rotate_y(-turn_angle)
-	
-	velocity.y = vel_y
 

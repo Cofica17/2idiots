@@ -6,6 +6,8 @@ func init(_player, _locomotion):
 	print("Walk")
 
 func _physics_process():
+	if Input.is_action_just_pressed(JUMP):
+		locomotion.set_jump_state()
 	if Input.is_action_pressed(SPRINT) and !Input.is_action_pressed(MOVE_BACK):
 		locomotion.set_run_state()
 	elif Input.is_action_pressed(MOVE_FORWARD):

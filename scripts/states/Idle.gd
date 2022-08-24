@@ -7,9 +7,9 @@ func init(_player, _locomotion):
 
 func _physics_process():
 	if player.is_on_floor():
-		if (Input.is_action_pressed(MOVE_FORWARD) or Input.is_action_pressed(MOVE_BACK)) and Input.is_action_pressed(SPRINT):
+		if (Input.is_action_pressed(MOVE_FORWARD) or Input.is_action_pressed(MOVE_BACK)) and Input.is_action_pressed(SPRINT) and player.can_sprint:
 			locomotion.set_run_state()
-		elif (Input.is_action_pressed(MOVE_FORWARD) or Input.is_action_pressed(MOVE_BACK)) and !Input.is_action_pressed(SPRINT):
+		elif (Input.is_action_pressed(MOVE_FORWARD) or Input.is_action_pressed(MOVE_BACK)) and (!Input.is_action_pressed(SPRINT) or !player.can_sprint):
 			locomotion.set_walk_state()
 		elif Input.is_action_just_pressed(JUMP):
 			locomotion.set_jump_state()

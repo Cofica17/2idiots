@@ -10,12 +10,17 @@ export var walking_speed = 4
 export var stopping_speed_ground = 0.1
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
-export var jump_strength = 15
+export var jump_strength = 10
 export var backward_speed_modifier = 0.5
+export var required_sprint_stamina = 1
+
+onready var stamina = 100
+
 
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var is_double_jumping = false
 var is_jumping = false
+var can_sprint = true
 
 var velocity = Vector3.ZERO
 
@@ -35,10 +40,24 @@ func set_character_model(v) -> void:
 
 func _physics_process(delta):
 	apply_gravity(delta)
+	apply_stamina() 
+	apply_sprint_state()
 	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta
-
+	
+	
+func apply_stamina() -> void:
+	if stamina < 100:
+		stamina += 0.1
+	#print(stamina)
+	
+	
+func apply_sprint_state() -> void:
+	if stamina < 1:
+		can_sprint = false
+	if stamina >= 20:
+		can_sprint = true

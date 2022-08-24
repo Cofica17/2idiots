@@ -11,10 +11,13 @@ const MOVE_RIGHT = "move_right"
 const JUMP = "jump"
 const SPRINT = "sprint"
 
-#Always called when state is being transitioned into
 func init(_player, _locomotion):
 	player = _player
 	locomotion = _locomotion
+
+#Always called when state is being transitioned into
+func enter():
+	pass
 
 #Here you define any and all behaviors
 func _physics_process():
@@ -23,6 +26,27 @@ func _physics_process():
 #Always called when state is being transitioned out off
 func exit():
 	pass
+
+func is_jump() -> bool:
+	return Input.is_action_pressed(JUMP)
+
+func is_sprint() -> bool:
+	return Input.is_action_pressed(SPRINT)
+
+func is_back() -> bool:
+	return Input.is_action_pressed(MOVE_BACK)
+
+func is_right() -> bool:
+	return Input.is_action_pressed(MOVE_RIGHT)
+
+func is_left() -> bool:
+	return Input.is_action_pressed(MOVE_LEFT)
+
+func is_forward() -> bool:
+	return Input.is_action_pressed(MOVE_FORWARD)
+
+func play_animation(anim):
+	player.animation_player.play(anim)
 
 func move_forward(speed):
 	player.velocity = player.global_transform.basis.z * speed

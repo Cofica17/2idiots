@@ -1,2 +1,8 @@
-class_name LocomotionStates
+extends Node
 
+enum STATES {
+	IDLE,
+	WALK,
+	RUN,
+	JUMP
+}

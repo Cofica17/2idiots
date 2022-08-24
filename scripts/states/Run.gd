@@ -1,22 +1,22 @@
 extends State
 class_name Run
 
-func init(_player, _locomotion):
-	.init(_player, _locomotion)
-	print("Run")
+func enter():
+	.enter()
+	play_animation("fast_running")
 
 func _physics_process():
-	if Input.is_action_just_pressed(JUMP):
+	._physics_process()
+	
+	if is_jump():
 		locomotion.set_jump_state()
-	if !Input.is_action_pressed(SPRINT):
+	
+	if not is_sprint():
 		locomotion.set_walk_state()
-	if Input.is_action_pressed(MOVE_FORWARD) and player.can_sprint:
+	if is_forward():
 		if player.stamina > 0:
-			player.stamina -= player.stamina_loss
+			player.change_stamina(-player.stamina_loss)
 		move_forward(player.running_speed)
-	elif Input.is_action_pressed(MOVE_BACK) or !player.can_sprint:
-		move_back(player.running_speed)
-		locomotion.set_walk_state()
 	else:
 		locomotion.set_idle_state()
 	
@@ -26,4 +26,4 @@ func _physics_process():
 		turn_right()
 
 func exit():
-	pass
+	.exit()

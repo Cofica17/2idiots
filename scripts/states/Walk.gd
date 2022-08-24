@@ -1,18 +1,22 @@
 extends State
 class_name Walk
 
-func init(_player, _locomotion):
-	.init(_player, _locomotion)
-	print("Walk")
+func enter():
+	.enter()
+	play_animation("running")
+	print("walk")
 
 func _physics_process():
-	if Input.is_action_just_pressed(JUMP):
-		locomotion.set_jump_state()
-	if Input.is_action_pressed(SPRINT) and !Input.is_action_pressed(MOVE_BACK) and player.can_sprint:
+	._physics_process()
+	
+	if is_sprint() and not is_back():
 		locomotion.set_run_state()
-	elif Input.is_action_pressed(MOVE_FORWARD):
+	if is_jump():
+		locomotion.set_jump_state()
+	
+	if is_forward():
 		move_forward(player.walking_speed)
-	elif Input.is_action_pressed(MOVE_BACK):
+	elif is_back():
 		move_back(player.walking_speed)
 	else:
 		locomotion.set_idle_state()
@@ -23,4 +27,4 @@ func _physics_process():
 		turn_right()
 
 func exit():
-	pass
+	.exit()

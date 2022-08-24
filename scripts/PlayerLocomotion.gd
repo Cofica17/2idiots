@@ -10,7 +10,6 @@ var jump = Jump.new()
 
 func _init(_player):
 	player = _player
-	set_state(idle)
 
 func set_state(v):
 	if state:
@@ -18,9 +17,21 @@ func set_state(v):
 	
 	state = v
 	state.init(player, self)
+	state.enter()
 
 func _physics_process():
 	state._physics_process()
+
+func transition_to_state(_state):
+	match _state:
+		LocomotionStates.STATES.IDLE:
+			set_state(idle)
+		LocomotionStates.STATES.WALK:
+			set_state(walk)
+		LocomotionStates.STATES.JUMP:
+			set_state(jump)
+		LocomotionStates.STATES.RUN:
+			set_state(run)
 
 func set_idle_state():
 	set_state(idle)

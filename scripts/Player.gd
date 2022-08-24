@@ -12,10 +12,13 @@ export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 export var jump_strength = 10
 export var backward_speed_modifier = 0.5
+#Stamina
+export var stamina = 100
 export var required_sprint_stamina = 1
-
-onready var stamina = 100
-
+export var max_stamina = 100
+export var stamina_loss = 0.5
+export var stamina_gain = 0.1
+export var sprint_stamina_treshold = 20
 
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var is_double_jumping = false
@@ -51,13 +54,13 @@ func apply_gravity(delta) -> void:
 	
 	
 func apply_stamina() -> void:
-	if stamina < 100:
-		stamina += 0.1
-	#print(stamina)
+	if stamina < max_stamina:
+		stamina += stamina_gain
+	
 	
 	
 func apply_sprint_state() -> void:
-	if stamina < 1:
+	if stamina < required_sprint_stamina:
 		can_sprint = false
-	if stamina >= 20:
+	if stamina >= sprint_stamina_treshold:
 		can_sprint = true

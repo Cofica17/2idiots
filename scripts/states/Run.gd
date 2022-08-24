@@ -12,7 +12,7 @@ func _physics_process():
 		locomotion.set_walk_state()
 	if Input.is_action_pressed(MOVE_FORWARD) and player.can_sprint:
 		if player.stamina > 0:
-			player.stamina -= 1
+			player.stamina -= player.stamina_loss
 		move_forward(player.running_speed)
 	elif Input.is_action_pressed(MOVE_BACK) or !player.can_sprint:
 		move_back(player.running_speed)

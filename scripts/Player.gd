@@ -18,6 +18,7 @@ export var backward_speed_modifier = 0.5
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var is_double_jumping = false
 var is_walk_jumping = false
+var is_jumping = false
 
 var velocity = Vector3.ZERO
 

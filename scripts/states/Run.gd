@@ -11,6 +11,8 @@ func _physics_process():
 	
 	if is_jump():
 		locomotion.set_jump_state()
+	if is_crouch():
+		locomotion.set_slide_state()
 	
 	if not is_sprint():
 		locomotion.set_walk_state()

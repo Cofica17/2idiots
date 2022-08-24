@@ -13,6 +13,8 @@ func _physics_process():
 		locomotion.set_walk_state()
 	if is_jump():
 		locomotion.set_jump_state()
+	if is_crouch():
+		locomotion.set_crouch_state()
 	
 	player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
 	

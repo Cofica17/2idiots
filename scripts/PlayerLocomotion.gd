@@ -8,6 +8,8 @@ var run = Run.new()
 var walk = Walk.new()
 var jump = Jump.new()
 var fall = Fall.new()
+var crouch = Crouch.new()
+var slide = Slide.new()
 
 func _init(_player):
 	player = _player
@@ -50,3 +52,9 @@ func set_jump_state():
 	
 func set_fall_state():
 	set_state(fall)
+	
+func set_crouch_state():
+	set_state(crouch)
+	
+func set_slide_state():
+	set_state(slide)

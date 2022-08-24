@@ -7,7 +7,8 @@ onready var animation_player:AnimationPlayer = $AnimationPlayer
 
 export var character_model:PackedScene = preload("res://assets/characthers/models/godot_models/king.tscn") setget set_character_model
 export var running_speed = 15
-export var walking_speed = 5
+export var walking_speed = 8
+export var crouch_speed = 3
 export var stopping_speed_ground = 0.1
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)

@@ -10,6 +10,7 @@ const MOVE_LEFT = "move_left"
 const MOVE_RIGHT = "move_right"
 const JUMP = "jump"
 const SPRINT = "sprint"
+const CROUCH = "crouch"
 
 func init(_player, _locomotion):
 	player = _player
@@ -26,6 +27,9 @@ func _physics_process():
 #Always called when state is being transitioned out off
 func exit():
 	pass
+
+func is_crouch() -> bool:
+	return Input.is_action_pressed(CROUCH)
 
 func is_jump() -> bool:
 	return Input.is_action_pressed(JUMP)

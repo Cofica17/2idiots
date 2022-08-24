@@ -7,6 +7,7 @@ var idle = Idle.new()
 var run = Run.new()
 var walk = Walk.new()
 var jump = Jump.new()
+var fall = Fall.new()
 
 func _init(_player):
 	player = _player
@@ -32,6 +33,8 @@ func transition_to_state(_state):
 			set_state(jump)
 		LocomotionStates.STATES.RUN:
 			set_state(run)
+		LocomotionStates.STATES.FALL:
+			set_state(fall)
 
 func set_idle_state():
 	set_state(idle)
@@ -44,3 +47,6 @@ func set_run_state():
 	
 func set_jump_state():
 	set_state(jump)
+	
+func set_fall_state():
+	set_state(fall)

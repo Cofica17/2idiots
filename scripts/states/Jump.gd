@@ -3,20 +3,21 @@ class_name Jump
 
 func enter():
 	.enter()
-	play_animation("jump")
+	#play_animation("Jump")
+	print("Jump")
 
 func _physics_process():
 	._physics_process()
+
 	if not player.is_jumping:
 		player.is_jumping = true
 		player.velocity.y = player.jump_strength * max((player.velocity.length() / player.running_speed), 1)
-		print(player.jump_strength * max((player.velocity.length() / player.running_speed), 1))
-	elif player.is_on_floor():
-		player.is_jumping = false
-		locomotion.set_idle_state()
-	
+		
+	elif player.velocity.y < 0:
+		locomotion.set_fall_state()
+		
 	if Input.is_action_pressed(MOVE_LEFT):
-			turn_left()
+		turn_left()
 	if Input.is_action_pressed(MOVE_RIGHT):
 		turn_right()
 	

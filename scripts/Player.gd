@@ -7,7 +7,7 @@ onready var animation_player:AnimationPlayer = $AnimationPlayer
 
 export var character_model:PackedScene = preload("res://assets/characthers/models/godot_models/king.tscn") setget set_character_model
 export var running_speed = 15
-export var walking_speed = 10
+export var walking_speed = 5
 export var stopping_speed_ground = 0.1
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
@@ -25,6 +25,7 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var is_double_jumping = false
 var is_jumping = false
 var can_sprint = true
+var prev_y = 0
 
 var velocity = Vector3.ZERO
 
@@ -42,6 +43,7 @@ func set_character_model(v) -> void:
 	$Model.add_child(character_model.instance())
 
 func _physics_process(delta):
+	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
 	apply_sprint_state()

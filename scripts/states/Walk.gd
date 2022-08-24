@@ -4,12 +4,12 @@ class_name Walk
 func enter():
 	.enter()
 	play_animation("running")
-	print("walk")
+	print("Walk")
 
 func _physics_process():
 	._physics_process()
 	
-	if is_sprint() and not is_back():
+	if is_sprint() and not is_back() and player.can_sprint:
 		locomotion.set_run_state()
 	if is_jump():
 		locomotion.set_jump_state()

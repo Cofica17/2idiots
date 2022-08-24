@@ -4,6 +4,7 @@ class_name Idle
 func enter():
 	.enter()
 	play_animation("netural_idle")
+	print("Idle")
 
 func _physics_process():
 	._physics_process()

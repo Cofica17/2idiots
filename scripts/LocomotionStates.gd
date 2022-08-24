@@ -4,5 +4,6 @@ enum STATES {
 	IDLE,
 	WALK,
 	RUN,
-	JUMP
+	JUMP,
+	FALL
 }

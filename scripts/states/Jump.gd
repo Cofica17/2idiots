@@ -11,7 +11,8 @@ func _physics_process():
 
 	if not player.is_jumping:
 		player.is_jumping = true
-		player.velocity.y = player.jump_strength * max((player.velocity.length() / player.running_speed), 1)
+		player.velocity.y = player.jump_strength
+		print(player.velocity.length())
 		
 	elif player.velocity.y < 0:
 		locomotion.set_fall_state()

@@ -14,6 +14,7 @@ export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 export var jump_strength = 30
 export var backward_speed_modifier = 0.5
+export var slide_idle_treshold = 2
 #Stamina
 export var stamina = 100
 export var required_sprint_stamina = 1

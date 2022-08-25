@@ -28,7 +28,7 @@ var is_double_jumping = false
 var is_jumping = false
 #Dash
 export var dash_idle_treshold = 5
-export var dash_move_forward = 200
+export var dash_move_forward = 150
 var can_dash = false
 var required_dash_stamina = 25
 var is_dashing = false
@@ -42,6 +42,7 @@ func _ready():
 	player_locomotion.set_state(player_locomotion.idle)
 
 func _physics_process(delta):
+	print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
 	get_can_sprint()

@@ -15,6 +15,8 @@ func _physics_process():
 		locomotion.set_jump_state()
 	if is_crouch():
 		locomotion.set_slide_state()
+	if is_dash() and player.can_dash:
+		locomotion.set_dash_state()
 	
 	if is_forward():
 		move_forward(player.walking_speed)

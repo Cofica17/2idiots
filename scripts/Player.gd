@@ -26,6 +26,13 @@ export var sprint_stamina_treshold = 20
 export var jump_strength = 30
 var is_double_jumping = false
 var is_jumping = false
+#Dash
+export var dash_idle_treshold = 5
+export var dash_move_forward = 100
+var can_dash = false
+var required_dash_stamina = 25
+var is_dashing = false
+var dash_stopping_speed = 0.05
 #Camera movement
 export var turn_angle = 0.05
 #Environment
@@ -46,7 +53,8 @@ func set_character_model(v) -> void:
 func _physics_process(delta):
 	apply_gravity(delta)
 	apply_stamina() 
-	apply_sprint_state()
+	can_sprint()
+	can_dash()
 	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
@@ -60,8 +68,15 @@ func apply_stamina() -> void:
 	if stamina < max_stamina:
 		change_stamina(stamina_gain)
 
-func apply_sprint_state() -> void:
+func can_sprint() -> void:
 	if stamina < required_sprint_stamina:
 		can_sprint = false
 	if stamina >= sprint_stamina_treshold:
 		can_sprint = true
+		
+func can_dash() -> void:
+	if stamina < required_dash_stamina:
+		can_dash = false
+	else:
+		can_dash = true
+	

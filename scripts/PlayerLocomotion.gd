@@ -10,6 +10,7 @@ var jump = Jump.new()
 var fall = Fall.new()
 var crouch = Crouch.new()
 var slide = Slide.new()
+var dash = Dash.new()
 
 func _init(_player):
 	player = _player
@@ -25,6 +26,9 @@ func set_state(v):
 func _physics_process():
 	state._physics_process()
 
+func set_dash_state():
+	set_state(dash)
+	
 func set_idle_state():
 	set_state(idle)
 

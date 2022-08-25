@@ -11,6 +11,7 @@ const MOVE_RIGHT = "move_right"
 const JUMP = "jump"
 const SPRINT = "sprint"
 const CROUCH = "crouch"
+const DASH = "dash"
 
 func init(_player, _locomotion):
 	player = _player
@@ -25,6 +26,9 @@ func _physics_process():
 func exit():
 	pass
 
+func is_dash() -> bool:
+	return Input.is_action_pressed(DASH)
+	
 func is_crouch() -> bool:
 	return Input.is_action_pressed(CROUCH)
 

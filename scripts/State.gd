@@ -16,15 +16,12 @@ func init(_player, _locomotion):
 	player = _player
 	locomotion = _locomotion
 
-#Always called when state is being transitioned into
 func enter():
 	pass
 
-#Here you define any and all behaviors
 func _physics_process():
 	pass
 
-#Always called when state is being transitioned out off
 func exit():
 	pass
 

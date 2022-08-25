@@ -3,7 +3,7 @@ class_name Jump
 
 func enter():
 	.enter()
-	#play_animation("Jump")
+	#Play animation
 	print("Jump")
 
 func _physics_process():

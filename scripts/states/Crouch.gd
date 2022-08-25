@@ -3,7 +3,7 @@ class_name Crouch
 
 func enter():
 	.enter()
-	#play_animation("fast_running")
+	#Play animation
 	print("Crouch")
 
 func _physics_process():

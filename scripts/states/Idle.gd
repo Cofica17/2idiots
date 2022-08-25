@@ -3,7 +3,7 @@ class_name Idle
 
 func enter():
 	.enter()
-	play_animation("netural_idle")
+	#Play animation
 	print("Idle")
 
 func _physics_process():

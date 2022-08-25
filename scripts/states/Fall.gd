@@ -3,7 +3,7 @@ class_name Fall
 
 func enter():
 	.enter()
-	#play_animation("Fall")
+	#Play animation
 	print("Fall")
 
 func _physics_process():

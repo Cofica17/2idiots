@@ -18,12 +18,13 @@ func _physics_process():
 	if is_dash() and player.can_dash:
 		locomotion.set_dash_state()
 	
-	if is_forward():
-		move_forward(player.walking_speed)
-	elif is_back():
-		move_back(player.walking_speed)
-	else:
-		locomotion.set_idle_state()
+	if player.is_on_floor():
+		if is_forward():
+			move_forward(player.walking_speed)
+		elif is_back():
+			move_back(player.walking_speed)
+		else:
+			locomotion.set_idle_state()
 	
 	if Input.is_action_pressed(MOVE_LEFT):
 		turn_left()

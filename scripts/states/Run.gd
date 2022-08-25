@@ -18,7 +18,7 @@ func _physics_process():
 	
 	if not is_sprint():
 		locomotion.set_walk_state()
-	if is_forward():
+	if is_forward() and player.is_on_floor():
 		if player.can_sprint:
 			player.change_stamina(-player.stamina_loss)
 			move_forward(player.running_speed)

@@ -23,7 +23,6 @@ light_energy = 0.443
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503471, 0 )
 
 [node name="Floor" type="Spatial" parent="."]
 
@@ -31,7 +30,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.503471, 0 )
 transform = Transform( 1, 0, 0.000977384, 0, 1, 0, -0.000977384, 0, 1, 0, 0, 0 )
 use_collision = true
 width = 32.8777
-height = 0.59
+height = 0.002
 depth = 33.1673
 material = SubResource( 1 )
 

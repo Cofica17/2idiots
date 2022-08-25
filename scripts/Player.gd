@@ -10,7 +10,7 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 #Movement
 export var running_speed = 15
-export var walking_speed = 8
+export var walking_speed = 5
 export var crouch_speed = 3
 export var stopping_speed_ground = 0.25
 export var slide_idle_treshold = 3
@@ -42,6 +42,7 @@ func _ready():
 	player_locomotion.set_state(player_locomotion.idle)
 
 func _physics_process(delta):
+	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
 	get_can_sprint()

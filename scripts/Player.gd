@@ -23,7 +23,7 @@ export var stamina_loss = 0.5
 export var stamina_gain = 0.1
 export var sprint_stamina_treshold = 20
 #Jumping
-export var jump_strength = 30
+export var jump_strength = 25
 var is_double_jumping = false
 var is_jumping = false
 #Dash

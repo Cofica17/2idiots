@@ -12,7 +12,10 @@ func _physics_process():
 	if not player.is_dashing:
 		player.is_dashing = true
 		player.stamina -= player.required_dash_stamina
-		move_forward(player.dash_move_forward)
+		if is_forward():
+			move_forward(player.dash_move_forward)
+		if is_back():
+			move_back(player.dash_move_forward)
 		
 	if player.is_dashing:
 		player.velocity = lerp(player.velocity, Vector3.ZERO, player.dash_stopping_speed)

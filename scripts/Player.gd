@@ -53,8 +53,8 @@ func set_character_model(v) -> void:
 func _physics_process(delta):
 	apply_gravity(delta)
 	apply_stamina() 
-	can_sprint()
-	can_dash()
+	get_can_sprint()
+	get_can_dash()
 	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
@@ -68,13 +68,13 @@ func apply_stamina() -> void:
 	if stamina < max_stamina:
 		change_stamina(stamina_gain)
 
-func can_sprint() -> void:
+func get_can_sprint() -> void:
 	if stamina < required_sprint_stamina:
 		can_sprint = false
 	if stamina >= sprint_stamina_treshold:
 		can_sprint = true
 		
-func can_dash() -> void:
+func get_can_dash() -> void:
 	if stamina < required_dash_stamina:
 		can_dash = false
 	else:

@@ -18,6 +18,8 @@ func _physics_process():
 			move_back(player.dash_move_forward)
 		
 	if player.is_dashing:
+		if not player.is_on_floor():
+			locomotion.set_idle_state()
 		player.velocity = lerp(player.velocity, Vector3.ZERO, player.dash_stopping_speed)
 		if player.velocity.length() < player.dash_idle_treshold:
 			player.is_dashing = false

@@ -36,7 +36,7 @@ var dash_stopping_speed = 0.2
 #Camera movement
 export var turn_angle = 0.05
 #Environment
-export var gravity = Vector3(0, -70, 0)
+export var gravity = Vector3(0, -100, 0)
 
 func _ready():
 	player_locomotion.set_state(player_locomotion.idle)
@@ -62,7 +62,7 @@ func apply_stamina() -> void:
 func get_can_sprint() -> void:
 	if stamina < required_sprint_stamina:
 		can_sprint = false
-	if stamina >= sprint_stamina_treshold:
+	if stamina >= sprint_stamina_treshold and is_on_floor():
 		can_sprint = true
 		
 func get_can_dash() -> void:

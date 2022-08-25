@@ -54,10 +54,12 @@ func play_animation(anim):
 	player.animation_player.play(anim)
 
 func move_forward(speed):
-	player.velocity = player.global_transform.basis.z * speed
+	if player.is_on_floor():
+		player.velocity = player.global_transform.basis.z * speed
 
 func move_back(speed):
-	player.velocity = -player.global_transform.basis.z * speed
+	if player.is_on_floor():
+		player.velocity = -player.global_transform.basis.z * speed
 
 func turn_left():
 	player.rotate_y(player.turn_angle)

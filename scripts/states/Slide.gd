@@ -11,7 +11,10 @@ func _physics_process():
 	player.velocity = lerp(player.velocity, Vector3.ZERO, 0.02)
 	
 	if player.velocity.length() < player.slide_idle_treshold:
-		locomotion.set_idle_state()
+		if is_forward() or is_back():
+			locomotion.set_walk_state()
+		else:
+			locomotion.set_idle_state()
 	if is_jump():
 		locomotion.set_jump_state()
 	

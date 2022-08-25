@@ -1,6 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+
+[sub_resource type="SpatialMaterial" id=3]
 
 [sub_resource type="CubeMesh" id=1]
 
@@ -29,6 +31,42 @@ use_collision = true
 width = 10.1033
 height = 3.46683
 depth = 12.1362
+
+[node name="Slope5" type="CSGBox" parent="Tile 1"]
+transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.5, -9.70856, 3.77815, -12.6789 )
+use_collision = true
+width = 10.1033
+height = 3.46683
+depth = 12.1362
+
+[node name="Slope6" type="CSGBox" parent="Tile 1"]
+transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.5, -3.27038, 5.90358, -12.6789 )
+use_collision = true
+width = 10.1033
+height = 3.46683
+depth = 12.1362
+
+[node name="Slope7" type="CSGBox" parent="Tile 1"]
+transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 3.3735, 8.13535, -12.6789 )
+use_collision = true
+width = 10.1033
+height = 3.46683
+depth = 12.1362
+
+[node name="Slope8" type="CSGBox" parent="Tile 1"]
+transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 2.84883, 10.0309, -4.82145 )
+use_collision = true
+width = 10.1033
+height = 3.46683
+depth = 12.1362
+
+[node name="Slope9" type="CSGBox" parent="Tile 1"]
+transform = Transform( 0.5, 0, 0, 0, 0.2, 0, 0, 0, 0.5, 2.84883, 11.987, 2.54238 )
+use_collision = true
+width = 20.8682
+height = 2.66928
+depth = 10.7471
+material = SubResource( 3 )
 
 [node name="Slope3" type="CSGBox" parent="Tile 1"]
 transform = Transform( 1, 0, 0, 0, 0.5, 0, 0, 0, 1, 23.1972, -6.82201, 26.3837 )

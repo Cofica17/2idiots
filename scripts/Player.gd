@@ -28,11 +28,11 @@ var is_double_jumping = false
 var is_jumping = false
 #Dash
 export var dash_idle_treshold = 5
-export var dash_move_forward = 100
+export var dash_move_forward = 200
 var can_dash = false
 var required_dash_stamina = 25
 var is_dashing = false
-var dash_stopping_speed = 0.05
+var dash_stopping_speed = 0.2
 #Camera movement
 export var turn_angle = 0.05
 #Environment

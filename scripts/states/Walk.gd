@@ -9,13 +9,13 @@ func enter():
 func _physics_process():
 	._physics_process()
 	
-	if is_sprint() and not is_back() and player.can_sprint:
+	if is_sprint() and not is_back() and player.get_can_sprint():
 		locomotion.set_run_state()
 	if is_jump():
 		locomotion.set_jump_state()
 	if is_crouch():
 		locomotion.set_slide_state()
-	if is_dash() and player.can_dash:
+	if is_dash():
 		locomotion.set_dash_state()
 	
 	if is_forward():

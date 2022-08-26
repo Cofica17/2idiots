@@ -2,6 +2,7 @@ class_name PlayerLocomotion
 
 var player:KinematicBody
 var state setget set_state
+var previous_state = null
 
 var idle = Idle.new()
 var run = Run.new()
@@ -19,6 +20,7 @@ func set_state(v):
 	if state:
 		state.exit()
 	
+	previous_state = state
 	state = v
 	state.init(player, self)
 	state.enter()

@@ -5,7 +5,7 @@ func enter():
 	.enter()
 	#Play animation
 	print("Jump")
-
+	
 func _physics_process():
 	._physics_process()
 

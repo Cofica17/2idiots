@@ -5,11 +5,11 @@ func enter():
 	.enter()
 	#Play animation
 	print("Crouch")
-
+	
 func _physics_process():
 	._physics_process()
 	
-	if not is_crouch() and not Input.is_action_pressed(CROUCH):
+	if Input.is_action_just_released(CROUCH):
 		locomotion.set_idle_state()
 		
 	if is_forward():

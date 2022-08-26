@@ -4,6 +4,7 @@ class_name Player
 onready var model = $Model
 onready var camera = $Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
+onready var animation_tree:AnimationTree = $AnimationTree
 
 export var running_speed = 15
 export var walking_speed = 8
@@ -34,6 +35,8 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
 func _ready():
+	#TODO: move to a better place
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
 
 func _physics_process(delta):

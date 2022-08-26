@@ -10,6 +10,8 @@ func get_class() -> String: return "Idle"
 func _physics_process():
 	._physics_process()
 	
+	if is_attacking():
+		locomotion.set_attack_state()
 	if is_forward() or is_back():
 		locomotion.set_walk_state()
 	if is_jump():

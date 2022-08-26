@@ -1,7 +1,6 @@
 extends State
 class_name Fall
-var sphere = load("res://scenes/Spell.tscn") 
-var sphere_node
+
 func enter():
 	.enter()
 	#Play animation
@@ -22,9 +21,6 @@ func _physics_process():
 			locomotion.set_idle_state()
 	else:
 		if player.is_double_jumping == false and is_jump():
-			sphere_node = sphere.instance()
-			player.get_tree().root.add_child(sphere_node)
-			sphere_node.global_transform = player.global_transform
 			player.is_double_jumping = true
 			player.is_jumping = false
 			locomotion.set_jump_state()

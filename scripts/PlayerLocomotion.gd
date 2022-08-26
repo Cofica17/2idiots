@@ -12,6 +12,7 @@ var fall = Fall.new()
 var crouch = Crouch.new()
 var slide = Slide.new()
 var dash = Dash.new()
+var attack = AutoAttack.new()
 
 var cnt = 0
 
@@ -56,3 +57,6 @@ func set_crouch_state():
 	
 func set_slide_state():
 	set_state(slide)
+
+func set_attack_state():
+	set_state(attack)

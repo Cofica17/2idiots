@@ -12,6 +12,7 @@ const JUMP = "jump"
 const SPRINT = "sprint"
 const CROUCH = "crouch"
 const DASH = "dash"
+const AUTO_ATTACK = "auto_attack"
 
 func init(_player, _locomotion):
 	player = _player
@@ -52,6 +53,9 @@ func is_left() -> bool:
 
 func is_forward() -> bool:
 	return Input.is_action_pressed(MOVE_FORWARD)
+	
+func is_attacking() -> bool:
+	return Input.is_action_just_pressed(AUTO_ATTACK)
 
 func play_animation(anim):
 	player.animation_player.play(anim)

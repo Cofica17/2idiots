@@ -4,15 +4,19 @@ export var gravity = Vector3(0, -2, 0)
 export var velocity = Vector3.ZERO
 
 func _ready():
-	velocity.z += 30
-	pass
+	var p2 = get_viewport().get_mouse_position()
+	print(p2)
+	velocity.x = p2.x/100
+	velocity.y = p2.y/100
+	velocity.z = 10
 
 func _physics_process(delta):
 	apply_gravity(delta)
 	velocity = lerp(velocity, Vector3.ZERO, 0.01)
 	velocity = move_and_slide(velocity, Vector3.UP)
-	if velocity.length() < 1:
-		queue_free()
+	#if velocity.length() < 1:
+		#print("Destroyed")
+		#queue_free()
 	
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta

@@ -25,7 +25,6 @@ export var required_dash_stamina = 25
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 
-
 var can_dash = false
 var dash_stopping_speed = 0.2
 var is_double_jumping = false

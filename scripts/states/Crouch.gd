@@ -4,8 +4,9 @@ class_name Crouch
 func enter():
 	.enter()
 	#Play animation
-	print("Crouch")
-	
+
+func get_class() -> String: return "Crouch"
+
 func _physics_process():
 	._physics_process()
 	

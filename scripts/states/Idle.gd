@@ -4,7 +4,8 @@ class_name Idle
 func enter():
 	.enter()
 	#Play animation
-	print("Idle")
+
+func get_class() -> String: return "Idle"
 
 func _physics_process():
 	._physics_process()

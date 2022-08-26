@@ -5,7 +5,8 @@ func enter():
 	.enter()
 	if not player.get_can_sprint():
 		locomotion.set_state(locomotion.previous_state)
-	print("Run")
+
+func get_class() -> String: return "Run"
 
 func _physics_process():
 	._physics_process()
@@ -16,9 +17,9 @@ func _physics_process():
 		locomotion.set_jump_state()
 	if is_crouch():
 		locomotion.set_slide_state()
-	
 	if not is_sprint():
 		locomotion.set_walk_state()
+		
 	if is_forward():
 		if player.get_can_sprint():
 			player.change_stamina(-player.stamina_loss)

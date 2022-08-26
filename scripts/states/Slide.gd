@@ -4,7 +4,8 @@ class_name Slide
 func enter():
 	.enter()
 	#Play animation
-	print("Slide")
+
+func get_class() -> String: return "Slide"
 
 func _physics_process():
 	._physics_process()

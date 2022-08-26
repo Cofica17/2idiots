@@ -4,7 +4,8 @@ class_name Jump
 func enter():
 	.enter()
 	#Play animation
-	print("Jump")
+	
+func get_class() -> String: return "Jump"
 	
 func _physics_process():
 	._physics_process()

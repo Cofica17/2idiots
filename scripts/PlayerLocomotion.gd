@@ -13,6 +13,8 @@ var crouch = Crouch.new()
 var slide = Slide.new()
 var dash = Dash.new()
 
+var cnt = 0
+
 func _init(_player):
 	player = _player
 
@@ -23,6 +25,9 @@ func set_state(v):
 	previous_state = state
 	state = v
 	state.init(player, self)
+	if not null == previous_state:
+		print(state.get_class(), "|", previous_state.get_class(), "|", cnt)
+		cnt += 1
 	state.enter()
 
 func _physics_process():

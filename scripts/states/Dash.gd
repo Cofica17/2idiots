@@ -7,7 +7,8 @@ func enter():
 	.enter()
 	if not player.get_can_dash():
 		locomotion.set_state(locomotion.previous_state)
-	print("Dash")
+
+func get_class() -> String: return "Dash"
 
 func _physics_process():
 	._physics_process()

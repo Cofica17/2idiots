@@ -5,6 +5,7 @@ onready var model = $Model
 onready var camera = $Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 
+export var debug_infinite_stamina:bool = false
 export var running_speed = 15
 export var walking_speed = 8
 export var crouch_speed = 3
@@ -43,6 +44,9 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func change_stamina(v):
+	if debug_infinite_stamina:
+		return
+	
 	stamina += v
 
 func apply_gravity(delta) -> void:
@@ -60,7 +64,7 @@ func get_can_sprint() -> bool:
 		stamina_treshold_reached = false
 		return false
 	if stamina_treshold_reached:
-		return true	
+		return true
 	return false
 		
 func get_can_dash() -> bool:

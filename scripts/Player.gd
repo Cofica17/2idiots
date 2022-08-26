@@ -21,6 +21,7 @@ export var dash_idle_treshold = 5
 export var dash_move_forward = 200
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
+export var infinite_stamina:bool = false
 
 var can_dash = false
 var required_dash_stamina = 25
@@ -44,6 +45,9 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func change_stamina(v):
+	if infinite_stamina:
+		return
+	
 	stamina += v
 
 func apply_gravity(delta) -> void:

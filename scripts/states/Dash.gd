@@ -11,7 +11,7 @@ func _physics_process():
 	
 	if not player.is_dashing:
 		player.is_dashing = true
-		player.stamina -= player.required_dash_stamina
+		player.change_stamina(-player.required_dash_stamina)
 		if is_forward():
 			move_forward(player.dash_move_forward)
 		if is_back():

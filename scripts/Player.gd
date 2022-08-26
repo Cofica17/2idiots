@@ -21,11 +21,12 @@ export var sprint_stamina_treshold = 20
 export var jump_strength = 30
 export var dash_idle_treshold = 5
 export var dash_move_forward = 200
+export var required_dash_stamina = 25
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 
+
 var can_dash = false
-var required_dash_stamina = 25
 var dash_stopping_speed = 0.2
 var is_double_jumping = false
 var is_jumping = false

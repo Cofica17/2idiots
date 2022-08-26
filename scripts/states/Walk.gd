@@ -3,7 +3,7 @@ class_name Walk
 
 func enter():
 	.enter()
-	#Play animation
+	play_animation("slow_run")
 	print("Walk")
 
 func _physics_process():

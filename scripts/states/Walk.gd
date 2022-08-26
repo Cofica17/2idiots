@@ -3,6 +3,7 @@ class_name Walk
 
 func enter():
 	.enter()
+
 	#Play animation
 
 func get_class() -> String: return "Walk"

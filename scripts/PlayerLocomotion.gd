@@ -46,6 +46,6 @@ func set_fall_state():
 	
 func set_crouch_state():
 	set_state(crouch)
-	
+
 func set_slide_state():
 	set_state(slide)

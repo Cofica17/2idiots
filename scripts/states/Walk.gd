@@ -13,8 +13,8 @@ func _physics_process():
 		locomotion.set_run_state()
 	if is_jump():
 		locomotion.set_jump_state()
-	if is_slide():
-		locomotion.set_slide_state()
+	if is_crouch():
+		locomotion.set_crouch_state()
 	if is_dash() and player.can_dash:
 		locomotion.set_dash_state()
 	
@@ -24,11 +24,6 @@ func _physics_process():
 		move_back(player.walking_speed)
 	else:
 		locomotion.set_idle_state()
-	
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
 
 func exit():
 	.exit()

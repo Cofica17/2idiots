@@ -13,7 +13,7 @@ func _physics_process():
 		locomotion.set_dash_state()
 	if is_jump():
 		locomotion.set_jump_state()
-	if is_slide():
+	if is_crouch():
 		locomotion.set_slide_state()
 	
 	if not is_sprint():
@@ -26,11 +26,6 @@ func _physics_process():
 			locomotion.set_walk_state()
 	else:
 		locomotion.set_idle_state()
-	
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
 
 func exit():
 	.exit()

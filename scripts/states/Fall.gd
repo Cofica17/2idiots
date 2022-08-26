@@ -23,11 +23,6 @@ func _physics_process():
 			player.is_double_jumping = true
 			player.is_jumping = false
 			locomotion.set_jump_state()
-			
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
-	
+
 func exit():
 	.exit()

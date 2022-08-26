@@ -6,6 +6,7 @@ onready var camera = $Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
+export var infinite_stamina:bool = false
 export var running_speed = 15
 export var walking_speed = 8
 export var crouch_speed = 3
@@ -22,7 +23,6 @@ export var dash_idle_treshold = 5
 export var dash_move_forward = 200
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
-export var infinite_stamina:bool = false
 
 var can_dash = false
 var required_dash_stamina = 25

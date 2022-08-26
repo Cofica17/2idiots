@@ -17,11 +17,6 @@ func _physics_process():
 			locomotion.set_idle_state()
 	if is_jump():
 		locomotion.set_jump_state()
-	
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
 
 func exit():
 	.exit()

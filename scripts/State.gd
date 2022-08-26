@@ -32,11 +32,8 @@ func exit():
 func is_dash() -> bool:
 	return Input.is_action_pressed(DASH)
 
-func is_slide() -> bool:
-	return Input.is_action_just_pressed(SLIDE)
-
 func is_crouch() -> bool:
-	return Input.is_action_just_pressed(CROUCH)
+	return Input.is_action_pressed(CROUCH)
 
 func is_jump() -> bool:
 	return Input.is_action_pressed(JUMP)

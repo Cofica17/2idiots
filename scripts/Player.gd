@@ -33,6 +33,7 @@ var is_jumping = false
 var can_sprint = true
 var stamina_treshold_reached = true
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
+var player_attack = PlayerAttack.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
 func _ready():

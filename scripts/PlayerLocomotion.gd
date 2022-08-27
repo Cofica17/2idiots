@@ -3,9 +3,7 @@ class_name PlayerLocomotion
 var player:KinematicBody
 var state setget set_state
 var previous_state = null
-var state_machine
-
-var player_attack 
+var state_machine 
 
 var idle = Idle.new()
 var run = Run.new()
@@ -20,7 +18,6 @@ var cnt = 0
 
 func _init(_player):
 	player = _player
-	player_attack = PlayerAttack.new(player)
 
 func set_state(v):
 	if state:
@@ -28,7 +25,7 @@ func set_state(v):
 
 	previous_state = state
 	state = v
-	state.init(player, self, player_attack)
+	state.init(player, self)
 	
 	if not null == previous_state:
 		print(state.get_class(), "|", previous_state.get_class(), "|", cnt)

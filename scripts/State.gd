@@ -16,10 +16,9 @@ const DASH = "dash"
 const SLIDE = "slide"
 const AUTO_ATTACK = "auto_attack"
 
-func init(_player, _locomotion, _player_attack):
+func init(_player, _locomotion):
 	player = _player
 	locomotion = _locomotion
-	player_attack = _player_attack
 
 func enter():
 	pass

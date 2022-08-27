@@ -11,6 +11,9 @@ func _physics_process():
 	._physics_process()
 	player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_slide)
 	
+	if is_auto_attack():
+		player.player_attack.attack()
+		
 	if player.velocity.length() < player.slide_idle_treshold:
 		if is_crouch():
 			locomotion.set_crouch_state()

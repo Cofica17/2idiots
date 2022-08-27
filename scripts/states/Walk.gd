@@ -11,7 +11,7 @@ func _physics_process():
 	._physics_process()
 	
 	if is_auto_attack():
-		locomotion.player_attack.attack()
+		player.player_attack.attack()
 	if is_jump():
 		locomotion.set_jump_state()
 	if is_crouch():

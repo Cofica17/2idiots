@@ -5,6 +5,8 @@ var state setget set_state
 var previous_state = null
 var state_machine
 
+var player_attack 
+
 var idle = Idle.new()
 var run = Run.new()
 var walk = Walk.new()
@@ -13,12 +15,12 @@ var fall = Fall.new()
 var crouch = Crouch.new()
 var slide = Slide.new()
 var dash = Dash.new()
-var auto_attack = Attack.new()
 
 var cnt = 0
 
 func _init(_player):
 	player = _player
+	player_attack = PlayerAttack.new(player)
 
 func set_state(v):
 	if state:
@@ -26,11 +28,12 @@ func set_state(v):
 
 	previous_state = state
 	state = v
-	state.init(player, self)
+	state.init(player, self, player_attack)
+	
 	if not null == previous_state:
 		print(state.get_class(), "|", previous_state.get_class(), "|", cnt)
 		cnt += 1
-	#print(state_machine.get_current_node())
+	
 	state.enter()
 
 func _physics_process():
@@ -59,6 +62,3 @@ func set_crouch_state():
 
 func set_slide_state():
 	set_state(slide)
-
-func set_attack_state():
-	set_state(auto_attack)

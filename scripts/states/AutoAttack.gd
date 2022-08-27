@@ -1,19 +1,10 @@
 extends KinematicBody
 
-export var gravity = Vector3(0, -2, 0)
+export var gravity = Vector3(0, -10, 0)
 export var velocity = Vector3.ZERO
 export var speed = 10
-var player_camera = null
-var bullet_direction = null
-var player = null
+var bullet_direction = Vector3.ZERO
 
-func _ready():
-	player = get_parent()
-	if not player_camera:
-		player_camera = player.camera_controller
-	if not bullet_direction:
-		bullet_direction = player_camera.get_bullet_direction() * speed
-	
 func _physics_process(delta):
 	apply_gravity(delta)
 	velocity = move_and_slide(bullet_direction, Vector3.UP)
@@ -22,6 +13,9 @@ func _physics_process(delta):
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta
 
+func set_bullet_direction(direction) -> void:
+	bullet_direction = direction * speed
+	
 func destroy() -> void:
 	if velocity.length() < 1:
 		print("Destroyed")

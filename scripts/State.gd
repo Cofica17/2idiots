@@ -2,6 +2,7 @@ class_name State
 
 var player:KinematicBody
 var locomotion
+var player_attack
 var locomotion_state
 
 const MOVE_FORWARD = "move_forward"
@@ -15,9 +16,10 @@ const DASH = "dash"
 const SLIDE = "slide"
 const AUTO_ATTACK = "auto_attack"
 
-func init(_player, _locomotion):
+func init(_player, _locomotion, _player_attack):
 	player = _player
 	locomotion = _locomotion
+	player_attack = _player_attack
 
 func enter():
 	pass

@@ -3,25 +3,25 @@ class_name Run
 
 func enter():
 	.enter()
-	#Play animation
-	print("Run")
+	if not player.get_can_sprint():
+		locomotion.set_state(locomotion.previous_state)
+
+func get_class() -> String: return "Run"
 
 func _physics_process():
 	._physics_process()
-	
-	if is_dash() and player.can_dash:
+
+	if is_dash():
 		locomotion.set_dash_state()
 	if is_jump():
 		locomotion.set_jump_state()
 	if is_crouch():
 		locomotion.set_slide_state()
-	
 	if not is_sprint():
 		locomotion.set_walk_state()
-	
-	print(player.is_on_floor())
-	if is_forward() and player.is_on_floor():
-		if player.can_sprint:
+		
+	if is_forward():
+		if player.get_can_sprint():
 			player.change_stamina(-player.stamina_loss)
 			move_forward(player.running_speed)
 		else:

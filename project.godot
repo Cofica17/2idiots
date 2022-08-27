@@ -90,8 +90,8 @@ LocomotionStates="*res://scripts/LocomotionStates.gd"
 
 [display]
 
-window/size/width=2000
-window/size/height=1200
+window/size/width=1700
+window/size/height=1000
 
 [gui]
 

@@ -4,7 +4,8 @@ class_name Fall
 func enter():
 	.enter()
 	#Play animation
-	print("Fall")
+
+func get_class() -> String: return "Fall"
 
 func _physics_process():
 	._physics_process()
@@ -22,7 +23,7 @@ func _physics_process():
 		if player.is_double_jumping == false and is_jump():
 			player.is_double_jumping = true
 			player.is_jumping = false
-			locomotion.set_jump_state()	
+			locomotion.set_jump_state()
 			
 	if Input.is_action_pressed(MOVE_LEFT):
 		turn_left()

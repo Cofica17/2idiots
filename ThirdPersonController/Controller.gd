@@ -1,7 +1,7 @@
 extends Spatial
 
 export(NodePath) var PlayerPath  = "" #You must specify this in the inspector!
-export(float) var mouse_sensitivity = 4
+export(float) var mouse_sensitivity = 4.0
 export var rot_x_limit = 25
 onready var inner_gimbal = $InnerGimbal
 onready var camera = $InnerGimbal/Camera

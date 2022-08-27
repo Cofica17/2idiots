@@ -11,8 +11,7 @@ func _ready():
 
 func _physics_process(delta):
 	apply_gravity(delta)
-	move_and_slide(velocity, Vector3.UP)
-	
+	velocity = move_and_slide(velocity, Vector3.UP)
 	destroy()
 	
 func apply_gravity(delta) -> void:
@@ -25,7 +24,7 @@ func destroy() -> void:
 	if translation.distance_to(get_parent().translation) > destroy_distance:
 		print("Went Far Away")
 		queue_free()
-	if get_slide_collision(0) != null:
+		
+	if get_last_slide_collision() != null:
 		print("Colided")
 		queue_free()
-

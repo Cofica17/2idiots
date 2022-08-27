@@ -17,7 +17,7 @@ shape = SubResource( 2 )
 
 [node name="Projectile" type="Spatial" parent="."]
 
-[node name="CSGSphere" type="CSGSphere" parent="Projectile"]
+[node name="Sphere" type="CSGSphere" parent="Projectile"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00357881, 0, 0 )
 radius = 0.104738
 material = SubResource( 1 )

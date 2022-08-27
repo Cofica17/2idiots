@@ -14,10 +14,10 @@ func _init(_player):
 func get_player_aim() -> void:
 	player_camera = player.camera_controller
 	bullet_direction = player_camera.get_bullet_direction()
-	
+
 func attack() -> void:
 	get_player_aim()
 	projectile_instance = projectile.instance()
 	projectile_instance.set_bullet_direction(bullet_direction)
-	projectile_instance.translation = Vector3.ZERO + Vector3(0.5,0.5,0.5)
+	projectile_instance.translation = Vector3.ZERO + Vector3(0,1.5,1)
 	player.add_child(projectile_instance)

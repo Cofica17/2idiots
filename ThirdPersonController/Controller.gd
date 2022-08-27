@@ -8,7 +8,6 @@ onready var camera = $InnerGimbal/Camera
 
 var player:Player
 var rot := Vector2.ZERO
-var project_vector
 
 func _ready():
 	player = get_node(PlayerPath)
@@ -16,13 +15,9 @@ func _ready():
 func _unhandled_input(event):
 	if event is InputEventMouseMotion :
 		rot = event.relative
-		
-func _input(event):
-	if event is InputEventMouseButton and event.pressed and event.button_index == 2:
-		project_vector = camera.project_ray_normal(event.position)
 
 func get_bullet_direction() -> Vector3:
-	return project_vector
+	return camera.project_ray_normal(get_viewport().size/2)
 
 func _physics_process(delta):
 	player.rotate_y(deg2rad(-rot.x)*delta*mouse_sensitivity)

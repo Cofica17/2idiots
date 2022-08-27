@@ -9,8 +9,8 @@ func get_class() -> String: return "Idle"
 
 func _physics_process():
 	._physics_process()
-		
-
+	
+	
 	if is_auto_attack():
 		locomotion.player_attack.attack()
 	if is_forward() or is_back():

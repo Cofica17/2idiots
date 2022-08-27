@@ -3,6 +3,7 @@ class_name Run
 
 func enter():
 	.enter()
+	play_animation("run")
 	if not player.get_can_sprint():
 		locomotion.set_state(locomotion.previous_state)
 
@@ -11,7 +12,7 @@ func get_class() -> String: return "Run"
 func _physics_process():
 	._physics_process()
 
-	if is_dash():
+	if Input.is_action_just_pressed(DASH):
 		locomotion.set_dash_state()
 	if is_jump():
 		locomotion.set_jump_state()
@@ -28,11 +29,6 @@ func _physics_process():
 			locomotion.set_walk_state()
 	else:
 		locomotion.set_idle_state()
-	
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
 
 func exit():
 	.exit()

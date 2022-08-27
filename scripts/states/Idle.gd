@@ -3,7 +3,7 @@ class_name Idle
 
 func enter():
 	.enter()
-	#Play animation
+	play_animation("idle")
 
 func get_class() -> String: return "Idle"
 
@@ -18,11 +18,6 @@ func _physics_process():
 		locomotion.set_crouch_state()
 	
 	player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
-	
-	if Input.is_action_pressed(MOVE_LEFT):
-		turn_left()
-	if Input.is_action_pressed(MOVE_RIGHT):
-		turn_right()
 
 func exit():
 	.exit()

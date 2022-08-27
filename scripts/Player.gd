@@ -2,8 +2,9 @@ extends KinematicBody
 class_name Player
 
 onready var model = $Model
-onready var camera = $Camera
+onready var camera = $CameraController/InnerGimbal/Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
+onready var animation_tree:AnimationTree = $AnimationTree
 
 export var debug_infinite_stamina:bool = false
 export var running_speed = 15
@@ -18,7 +19,7 @@ export var max_stamina = 100
 export var stamina_loss = 0.5
 export var stamina_gain = 0.1
 export var sprint_stamina_treshold = 20
-export var jump_strength = 30
+export var jump_strength = 25
 export var dash_idle_treshold = 5
 export var dash_move_forward = 200
 export var required_dash_stamina = 25
@@ -35,7 +36,17 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
 func _ready():
+	player_locomotion.state_machine = animation_tree.get("parameters/playback")
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
+
+#TODO: move to a better place
+func _input(event):
+	if Input.is_key_pressed(KEY_ALT):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
 	#print(stamina)

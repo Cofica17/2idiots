@@ -12,11 +12,12 @@ const JUMP = "jump"
 const SPRINT = "sprint"
 const CROUCH = "crouch"
 const DASH = "dash"
+const SLIDE = "slide"
 
 func init(_player, _locomotion):
 	player = _player
 	locomotion = _locomotion
-	
+
 func enter():
 	pass
 
@@ -31,7 +32,7 @@ func exit():
 
 func is_dash() -> bool:
 	return Input.is_action_pressed(DASH)
-	
+
 func is_crouch() -> bool:
 	return Input.is_action_pressed(CROUCH)
 
@@ -54,7 +55,7 @@ func is_forward() -> bool:
 	return Input.is_action_pressed(MOVE_FORWARD)
 
 func play_animation(anim):
-	player.animation_player.play(anim)
+	locomotion.state_machine.travel(anim)
 
 func move_forward(speed):
 	player.velocity = player.global_transform.basis.z * speed

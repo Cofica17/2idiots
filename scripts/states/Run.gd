@@ -12,7 +12,7 @@ func get_class() -> String: return "Run"
 func _physics_process():
 	._physics_process()
 
-	if Input.is_action_just_pressed(DASH):
+	if Input.is_action_just_pressed(DASH) and player.get_can_dash():
 		locomotion.set_dash_state()
 	if is_jump():
 		locomotion.set_jump_state()

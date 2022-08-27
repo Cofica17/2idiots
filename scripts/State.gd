@@ -13,6 +13,7 @@ const SPRINT = "sprint"
 const CROUCH = "crouch"
 const DASH = "dash"
 const SLIDE = "slide"
+const AUTO_ATTACK = "auto_attack"
 
 func init(_player, _locomotion):
 	player = _player
@@ -53,6 +54,9 @@ func is_left() -> bool:
 
 func is_forward() -> bool:
 	return Input.is_action_pressed(MOVE_FORWARD)
+
+func is_auto_attack() -> bool:
+	return Input.is_action_just_pressed(AUTO_ATTACK)
 
 func play_animation(anim):
 	locomotion.state_machine.travel(anim)

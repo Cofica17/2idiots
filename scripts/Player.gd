@@ -3,6 +3,7 @@ class_name Player
 
 onready var model = $Model
 onready var camera = $CameraController/InnerGimbal/Camera
+onready var camera_controller = $CameraController
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
@@ -26,7 +27,6 @@ export var required_dash_stamina = 25
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 
-var can_dash = false
 var dash_stopping_speed = 0.2
 var is_double_jumping = false
 var is_jumping = false
@@ -49,7 +49,6 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
 	player_locomotion._physics_process()

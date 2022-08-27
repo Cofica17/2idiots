@@ -1,14 +1,21 @@
 extends State
-class_name Walk
+class_name Attack
+
+var projectile = load("res://scenes/AutoAttack.tscn")
+var projectile_instance
 
 func enter():
 	.enter()
-	play_animation("slow_run")
+	#play_animation("slow_run")
 
-func get_class() -> String: return "Walk"
+func get_class() -> String: return "Attack"
 
 func _physics_process():
 	._physics_process()
+	
+	projectile_instance = projectile.instance()
+	projectile_instance.translation = Vector3.ZERO + Vector3(0.5,0.5,0.5)
+	player.add_child(projectile_instance)
 	
 	if is_jump():
 		locomotion.set_jump_state()

@@ -12,6 +12,7 @@ func _ready():
 func _physics_process(delta):
 	apply_gravity(delta)
 	move_and_slide(velocity, Vector3.UP)
+	
 	destroy()
 	
 func apply_gravity(delta) -> void:
@@ -22,6 +23,9 @@ func set_bullet_direction(direction) -> void:
 	
 func destroy() -> void:
 	if translation.distance_to(get_parent().translation) > destroy_distance:
-		print("Destroyed")
+		print("Went Far Away")
+		queue_free()
+	if get_slide_collision(0) != null:
+		print("Colided")
 		queue_free()
 

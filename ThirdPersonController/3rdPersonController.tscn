@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://ThirdPersonController/Controller.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/Group 1.png" type="Texture" id=2]
 
 [node name="CameraController" type="Spatial"]
 script = ExtResource( 1 )
@@ -10,4 +11,14 @@ PlayerPath = NodePath("..")
 transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.8, -1.6 )
 
 [node name="Camera" type="Camera" parent="InnerGimbal"]
+transform = Transform( 1, 1.42634e-08, 1.17141e-09, -1.42634e-08, 0.986601, 0.163154, 1.17141e-09, -0.163154, 0.986601, 3.24393e-08, 0.120101, -0.371062 )
 current = true
+
+[node name="CrosshairContainer" type="CenterContainer" parent="InnerGimbal"]
+margin_right = 1922.0
+margin_bottom = 1074.0
+mouse_filter = 2
+
+[node name="Crosshair" type="Sprite" parent="InnerGimbal/CrosshairContainer"]
+position = Vector2( 959, 555 )
+texture = ExtResource( 2 )

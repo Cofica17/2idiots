@@ -13,7 +13,7 @@ uv1_scale = Vector3( 300, 300, 1 )
 transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="Floor 1" type="CSGBox" parent="Floor"]
-transform = Transform( 1, 0, 0.000977384, 0, 1, 0, -0.000977384, 0, 1, 0, 0, 0 )
+transform = Transform( 1, 0, 0.000977384, 0, 1, 0, -0.000977384, 0, 1, -0.398574, -22.1351, -0.207226 )
 use_collision = true
 width = 79.0172
 height = 0.59

@@ -1,8 +1,8 @@
 extends KinematicBody
 
-export var gravity = Vector3(0, -5, 0)
+export var gravity = Vector3(0, -4, 0)
 export var velocity = Vector3.ZERO
-export var speed = 50
+export var speed = 250
 export var destroy_distance = 100
 var bullet_direction = Vector3.ZERO
 

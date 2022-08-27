@@ -2,7 +2,7 @@ extends KinematicBody
 class_name Player
 
 onready var model = $Model
-onready var camera = $Camera
+onready var camera = $CameraController/InnerGimbal/Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
@@ -36,9 +36,17 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
 func _ready():
-	#TODO: move to a better place
+	player_locomotion.state_machine = animation_tree.get("parameters/playback")
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
+
+#TODO: move to a better place
+func _input(event):
+	if Input.is_key_pressed(KEY_ALT):
+		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
+			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		else:
+			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
 	#print(stamina)

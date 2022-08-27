@@ -4,7 +4,8 @@ class_name Crouch
 func enter():
 	.enter()
 	play_animation("crouch_idle")
-	print("Crouch")
+
+func get_class() -> String: return "Crouch"
 
 func _physics_process():
 	._physics_process()
@@ -19,7 +20,8 @@ func _physics_process():
 		play_animation("crouch")
 		move_back(player.crouch_speed)
 	else:
-		play_animation("crouch_idle")
+		if locomotion.state_machine.get_current_node() != "crouch_idle":
+			play_animation("crouch_idle")
 		player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
 
 func exit():

@@ -9,6 +9,7 @@ uv1_scale = Vector3( 10, 10, 1 )
 [node name="World" type="Spatial"]
 
 [node name="Floor" type="Spatial" parent="."]
+transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
 
 [node name="Floor 1" type="CSGBox" parent="Floor"]
 transform = Transform( 1, 0, 0.000977384, 0, 1, 0, -0.000977384, 0, 1, 0, 0, 0 )

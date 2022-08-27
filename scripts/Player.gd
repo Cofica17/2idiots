@@ -33,6 +33,10 @@ var can_sprint = true
 var stamina_treshold_reached = true
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
+var from = Vector3.ZERO
+var to = Vector3.ZERO
+
+const ray_length = 1000
 
 func _ready():
 	player_locomotion.set_state(player_locomotion.idle)
@@ -46,7 +50,6 @@ func _physics_process(delta):
 func change_stamina(v):
 	if debug_infinite_stamina:
 		return
-	
 	stamina += v
 
 func apply_gravity(delta) -> void:
@@ -69,4 +72,12 @@ func get_can_sprint() -> bool:
 		
 func get_can_dash() -> bool:
 	return required_dash_stamina < stamina 
+
+func _input(event):
+	if event is InputEventMouseButton and event.pressed and event.button_index == 2:
+		var camera = $Camera
+		from = camera.project_ray_origin(event.position)
+		to = from + camera.project_ray_normal(event.position) * ray_length
+		print("from - ", from)
+		print("to - ", to)
 

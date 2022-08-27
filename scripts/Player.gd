@@ -3,86 +3,70 @@ class_name Player
 
 onready var model = $Model
 onready var camera = $Camera
+onready var animation_player:AnimationPlayer = $AnimationPlayer
 
-export var character_model:PackedScene = preload("res://assets/characthers/models/godot_models/king.tscn") setget set_character_model
-export var running_speed = 10
-export var walking_speed = 4
-export var stopping_speed_ground = 0.1
-export var stopping_speed_ground_air = 0.02
+export var debug_infinite_stamina:bool = false
+export var running_speed = 15
+export var walking_speed = 8
+export var crouch_speed = 3
+export var stopping_speed_ground = 0.2
+export var stopping_speed_slide = 0.01
+export var slide_idle_treshold = 3
+export var stamina = 100
+export var required_sprint_stamina = 1
+export var max_stamina = 100
+export var stamina_loss = 0.5
+export var stamina_gain = 0.1
+export var sprint_stamina_treshold = 20
+export var jump_strength = 30
+export var dash_idle_treshold = 5
+export var dash_move_forward = 200
+export var required_dash_stamina = 25
 export var turn_angle = 0.05
-export var gravity = Vector3(0, -35, 0)
-export var jump_strength = 15
-export var jump_strength_walk_modifier = 0.7
-export var backward_speed_modifier = 0.5
-var is_double_jumping = false
-var is_walk_jumping = false
+export var gravity = Vector3(0, -70, 0)
 
+var can_dash = false
+var dash_stopping_speed = 0.2
+var is_double_jumping = false
+var is_jumping = false
+var can_sprint = true
+var stamina_treshold_reached = true
+var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
 func _ready():
-	pass
-
-func set_character_model(v) -> void:
-	if not $Model:
-		return
-	
-	character_model = v
-	for child in $Model.get_children():
-		child.queue_free()
-	$Model.add_child(character_model.instance())
+	player_locomotion.set_state(player_locomotion.idle)
 
 func _physics_process(delta):
 	apply_gravity(delta)
-	handle_movement()
-	handle_jump()
+	apply_stamina() 
+	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
-func handle_jump() -> void:
-	if Input.is_action_pressed("jump") and is_on_floor():
-		is_double_jumping = false
-		if Input.is_action_pressed("walk"):
-			is_walk_jumping = true
-			velocity.y = jump_strength * jump_strength_walk_modifier
-		else:
-			is_walk_jumping = false
-			velocity.y = jump_strength 
+func change_stamina(v):
+	if debug_infinite_stamina:
 		return
-		
-	elif Input.is_action_just_pressed("jump") and !is_double_jumping and !is_on_floor():
-		is_double_jumping = true
-		if is_walk_jumping:
-			velocity.y = jump_strength * jump_strength_walk_modifier
-			print("Double Walk Jump")
-		else:
-			velocity.y = jump_strength
-			print("Double Run Jump")
-		
+	
+	stamina += v
+
 func apply_gravity(delta) -> void:
 	velocity += gravity * delta
 
-func handle_movement() -> void:
-	var vel_y = velocity.y
-	print(velocity.length())
-	var speed = 0
-	if is_on_floor():
-		velocity = lerp(velocity, Vector3.ZERO, stopping_speed_ground)
-	else:
-		velocity = lerp(velocity, Vector3.ZERO, stopping_speed_ground_air)
-	
-	if Input.is_action_pressed("walk") and is_on_floor():
-		speed = walking_speed
-	else:
-		speed = running_speed
+func apply_stamina() -> void:
+	if stamina >= sprint_stamina_treshold:
+		stamina_treshold_reached = true
 		
-	if Input.is_action_pressed("move_forward"):
-		velocity = global_transform.basis.z * speed
-	if Input.is_action_pressed("move_back"):
-		velocity = -global_transform.basis.z * speed
-	
-	if Input.is_action_pressed("move_left"):
-		rotate_y(turn_angle)
-	if Input.is_action_pressed("move_right"):
-		rotate_y(-turn_angle)
-	
-	velocity.y = vel_y
+	if stamina < max_stamina:
+		change_stamina(stamina_gain)
+
+func get_can_sprint() -> bool:
+	if stamina < required_sprint_stamina:
+		stamina_treshold_reached = false
+		return false
+	if stamina_treshold_reached:
+		return true
+	return false
+		
+func get_can_dash() -> bool:
+	return required_dash_stamina < stamina 
 

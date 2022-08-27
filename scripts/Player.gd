@@ -6,11 +6,12 @@ onready var camera = $Camera
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
-export var infinite_stamina:bool = false
+export var debug_infinite_stamina:bool = false
 export var running_speed = 15
-export var walking_speed = 8
+export var walking_speed = 5
 export var crouch_speed = 3
 export var stopping_speed_ground = 0.2
+export var stopping_speed_slide = 0.01
 export var slide_idle_treshold = 3
 export var stamina = 100
 export var required_sprint_stamina = 1
@@ -21,16 +22,16 @@ export var sprint_stamina_treshold = 20
 export var jump_strength = 25
 export var dash_idle_treshold = 5
 export var dash_move_forward = 200
+export var required_dash_stamina = 25
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
 
 var can_dash = false
-var required_dash_stamina = 25
-var is_dashing = false
 var dash_stopping_speed = 0.2
 var is_double_jumping = false
 var is_jumping = false
 var can_sprint = true
+var stamina_treshold_reached = true
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 
@@ -40,15 +41,14 @@ func _ready():
 	player_locomotion.set_state(player_locomotion.idle)
 
 func _physics_process(delta):
+	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
-	get_can_sprint()
-	get_can_dash()
 	player_locomotion._physics_process()
 	velocity = move_and_slide(velocity, Vector3.UP)
 
 func change_stamina(v):
-	if infinite_stamina:
+	if debug_infinite_stamina:
 		return
 	
 	stamina += v
@@ -57,18 +57,20 @@ func apply_gravity(delta) -> void:
 	velocity += gravity * delta
 
 func apply_stamina() -> void:
+	if stamina >= sprint_stamina_treshold:
+		stamina_treshold_reached = true
+		
 	if stamina < max_stamina:
 		change_stamina(stamina_gain)
 
-func get_can_sprint() -> void:
+func get_can_sprint() -> bool:
 	if stamina < required_sprint_stamina:
-		can_sprint = false
-	if stamina >= sprint_stamina_treshold:
-		can_sprint = true
+		stamina_treshold_reached = false
+		return false
+	if stamina_treshold_reached:
+		return true
+	return false
 		
-func get_can_dash() -> void:
-	if stamina < required_dash_stamina:
-		can_dash = false
-	else:
-		can_dash = true
-	
+func get_can_dash() -> bool:
+	return required_dash_stamina < stamina 
+

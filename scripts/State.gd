@@ -23,6 +23,9 @@ func init(_player, _locomotion):
 func enter():
 	pass
 
+func get_class():
+	pass
+
 func _physics_process():
 	pass
 

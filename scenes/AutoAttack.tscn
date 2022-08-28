@@ -16,6 +16,7 @@ transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0 )
 shape = SubResource( 2 )
 
 [node name="Projectile" type="Spatial" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0017207, -0.000532806, 0.00142443 )
 
 [node name="Sphere" type="CSGSphere" parent="Projectile"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00357881, 0, 0 )

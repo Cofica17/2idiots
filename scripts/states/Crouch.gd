@@ -9,7 +9,6 @@ func get_class() -> String: return "Crouch"
 
 func _physics_process():
 	._physics_process()
-	
 	if not Input.is_action_pressed(CROUCH):
 		locomotion.set_idle_state()
 		

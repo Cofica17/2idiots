@@ -4,14 +4,12 @@ class_name Run
 func enter():
 	.enter()
 	play_animation("run")
-	if not player.get_can_sprint():
-		locomotion.set_state(locomotion.previous_state)
 
 func get_class() -> String: return "Run"
 
 func _physics_process():
 	._physics_process()
-
+	
 	if Input.is_action_just_pressed(DASH) and player.get_can_dash():
 		locomotion.set_dash_state()
 	if is_jump():

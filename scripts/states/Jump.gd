@@ -16,6 +16,12 @@ func _physics_process():
 		
 	elif player.velocity.y < 0:
 		locomotion.set_fall_state()
+	
+	if locomotion.previous_state.get_class() == "Idle":
+		if is_forward():
+			move_forward(player.walking_speed)
+		elif is_back():
+			move_back(player.walking_speed)
 
 func exit():
 	.exit()

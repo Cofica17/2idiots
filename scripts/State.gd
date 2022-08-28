@@ -63,10 +63,14 @@ func play_animation(anim):
 	locomotion.state_machine.travel(anim)
 
 func move_forward(speed):
+	var v_y = player.velocity.y
 	player.velocity = player.global_transform.basis.z * speed
+	player.velocity.y = v_y
 
 func move_back(speed):
+	var v_y = player.velocity.y
 	player.velocity = -player.global_transform.basis.z * speed
+	player.velocity.y = v_y
 
 func turn_left():
 	player.rotate_y(player.turn_angle)

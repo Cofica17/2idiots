@@ -18,7 +18,7 @@ func _physics_process():
 		locomotion.set_crouch_state()
 	if is_dash() and player.get_can_dash():
 		locomotion.set_dash_state()
-	if is_sprint() and not is_back():
+	if is_sprint() and not is_back() and player.get_can_sprint():
 		locomotion.set_run_state()
 	
 	if is_forward():

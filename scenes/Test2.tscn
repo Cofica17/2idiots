@@ -33,14 +33,14 @@ depth = 58.523
 material = SubResource( 1 )
 
 [node name="CSGBox8" type="CSGBox" parent="StaticMeshes"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.98101, -90.904 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14067, -90.904 )
 use_collision = true
 width = 59.8631
 depth = 58.523
 material = SubResource( 1 )
 
 [node name="CSGBox9" type="CSGBox" parent="StaticMeshes"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 11.0795, -112.118 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23916, -112.118 )
 use_collision = true
 width = 59.8631
 depth = 30.312

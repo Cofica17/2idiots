@@ -33,12 +33,14 @@ func proximity_handler() -> void:
 func collision_handler() -> void:
 	if get_last_slide_collision() != null:
 		var collider_name = get_last_slide_collision().collider.name
-		for env in environment_group_members:
-			if env.name == collider_name:
-				print("Collided Environment")
-				queue_free()
 		for env in player_group_members:
 			if env.name == collider_name:
 				print("Collided Player")
 				queue_free()
+				return
+		for env in environment_group_members:
+			if env.name == collider_name:
+				print("Collided Environment")
+				queue_free()
+				return
 

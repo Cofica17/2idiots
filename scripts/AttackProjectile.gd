@@ -32,7 +32,7 @@ func proximity_handler() -> void:
 		
 func collision_handler() -> void:
 	if get_last_slide_collision() != null:
-		var collider_name = get_last_slide_collision().collider.name
+		var collider_name = get_slide_collision(0).collider.name
 		for env in player_group_members:
 			if env.name == collider_name:
 				print("Collided Player")

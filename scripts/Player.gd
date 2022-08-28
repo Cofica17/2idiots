@@ -49,6 +49,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
+	Server.fetch_player_transform(global_transform)
 	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 

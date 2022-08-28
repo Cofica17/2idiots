@@ -87,6 +87,7 @@ config/icon="res://icon.png"
 [autoload]
 
 LocomotionStates="*res://scripts/LocomotionStates.gd"
+Server="*res://scripts/singletons/Server.gd"
 
 [display]
 

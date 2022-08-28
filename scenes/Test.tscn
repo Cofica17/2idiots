@@ -1,15 +1,19 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+[ext_resource path="res://scenes/PlayerClone.tscn" type="PackedScene" id=3]
 
 [sub_resource type="SpatialMaterial" id=1]
-albedo_color = Color( 0.376471, 0.686275, 0.403922, 1 )
-uv1_scale = Vector3( 10, 10, 1 )
+vertex_color_use_as_albedo = true
+albedo_color = Color( 0.564706, 0.564706, 0.564706, 1 )
+albedo_texture = ExtResource( 2 )
+uv1_scale = Vector3( 230, 230, 230 )
 
 [node name="World" type="Spatial"]
 
 [node name="Floor" type="Spatial" parent="."]
-transform = Transform( 100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0 )
+transform = Transform( 20, 0, 0, 0, 1, 0, 0, 0, 20, 0, 0, 0 )
 
 [node name="Floor 1" type="CSGBox" parent="Floor"]
 transform = Transform( 1, 0, 0.000977384, 0, 1, 0, -0.000977384, 0, 1, 0, 0, 0 )
@@ -21,6 +25,9 @@ material = SubResource( 1 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 1.80313, 1.43637, 2.44321 )
+
+[node name="PlayerClone" parent="." instance=ExtResource( 3 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -1.259, 1.15042, 12.5216 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
 transform = Transform( 1, 0, 0, 0, -0.918557, 0.395289, 0, -0.395289, -0.918557, 1.16534, 8.3629, -20.0446 )

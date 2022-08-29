@@ -1,8 +1,7 @@
 extends Node
 class_name PlayerAttack
 
-var projectile_number = 1
-var projectile = load("res://scenes/AutoAttack.tscn")
+var projectile = load("res://scenes/AttackProjectile.tscn")
 var projectile_instance
 var player:KinematicBody
 var player_camera = null

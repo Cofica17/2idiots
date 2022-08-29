@@ -3,8 +3,8 @@ extends KinematicBody
 const PLAYER_GROUP = "Players"
 const ENVIRONMENT_GROUP = "Environment"
 
-onready var environment_group_members = get_tree().get_nodes_in_group(ENVIRONMENT_GROUP)
-onready var player_group_members = get_tree().get_nodes_in_group(PLAYER_GROUP)
+onready var environment_group_members = get_tree().get_nodes_in_group(ENVIRONMENT_GROUP)[0].get_children()
+onready var player_group_members = get_tree().get_nodes_in_group(PLAYER_GROUP)[0].get_children()
 
 export var gravity = Vector3(0, -4, 0)
 export var velocity = Vector3.ZERO

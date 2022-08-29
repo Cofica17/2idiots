@@ -2,7 +2,9 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
-var ip = "194.36.45.181"
+var ip = "127.0.0.1"
+#var ip = "194.36.45.181"
+var last_world_state_time:float = 0.0
 
 func _ready():
 	connect_to_server()
@@ -20,13 +22,21 @@ func _on_connection_succeeded():
 func _on_connection_failed():
 	print("Failed to Connect")
 
-func fetch_player_transform(transform):
-	rpc_unreliable_id(1, "fetch_player_transform", transform)
+func send_player_transform(transform):
+	var d = {
+		"T" : OS.get_system_time_msecs(),
+		"P" : transform
+	}
+	rpc_unreliable_id(1, "receive_player_transform", d)
 
-remote func return_player_transform(dict:Dictionary):
-	print(dict.erase(get_tree().get_network_unique_id()))
-	for key in dict:
+remote func receive_world_state(world_state:Dictionary):
+	if world_state["T"] < last_world_state_time:
+		return
+	
+	last_world_state_time = world_state["T"]
+	world_state.erase("T")
+	world_state.erase(get_tree().get_network_unique_id())
+	for key in world_state:
 		var p = get_node("../World/PlayerClone")
-		print(p)
 		if p :
-			p.global_transform = dict[key]
+			p.global_transform = world_state[key]["P"]

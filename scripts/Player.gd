@@ -37,19 +37,19 @@ var velocity = Vector3.ZERO
 
 func _ready():
 	player_locomotion.state_machine = animation_tree.get("parameters/playback")
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
 
 #TODO: move to a better place
 func _input(event):
-	if Input.is_key_pressed(KEY_ALT):
+	if Input.is_action_just_pressed("mouse_mode"):
 		if Input.mouse_mode == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		else:
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	Server.fetch_player_transform(global_transform)
+	Server.send_player_transform(global_transform)
 	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 

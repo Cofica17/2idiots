@@ -4,6 +4,7 @@ var network = NetworkedMultiplayerENet.new()
 var port = 7769
 var ip = "127.0.0.1"
 #var ip = "194.36.45.181"
+var connected = false
 var latency = 0
 var latency_array = []
 var client_clock = 0.0
@@ -21,6 +22,7 @@ func connect_to_server():
 	network.connect("connection_succeeded", self, "_on_connection_succeeded")
 
 func _on_connection_succeeded():
+	connected = true
 	print("Succesfully Connected")
 	rpc_id(1, "send_server_time", OS.get_system_time_msecs())
 	var timer = Timer.new()
@@ -75,9 +77,15 @@ remote func receive_player_animation(data):
 ########################
 
 func determine_latency():
+	if not connected:
+		return
+	
 	rpc_id(1, "determine_latency", OS.get_system_time_msecs())
 
 func send_player_transform(transform):
+	if not connected:
+		return
+	
 	var d = {
 		"T" : client_clock,
 		"P" : transform
@@ -85,4 +93,7 @@ func send_player_transform(transform):
 	rpc_unreliable_id(1, "receive_player_transform", d)
 
 func send_player_animation(anim):
+	if not connected:
+		return
+	
 	rpc_id(1, "receive_player_animation", anim)

@@ -32,14 +32,14 @@ animations = [ {
 
 [node name="Players" type="Spatial" parent="." groups=["Players"]]
 
-[node name="dummy_head" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.005, 16.6226 )
+[node name="dummy_head4" type="CSGSphere" parent="Players"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 13.1399, 26.3716 )
 use_collision = true
 radius = 2.49633
 material = SubResource( 2 )
 
-[node name="dummy_body" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8945, 16.6226 )
+[node name="dummy_body4" type="CSGSphere" parent="Players"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 15.0266, 26.3716 )
 use_collision = true
 material = SubResource( 2 )
 
@@ -143,6 +143,14 @@ use_collision = true
 width = 2.33216
 height = 14.0232
 depth = 58.523
+material = SubResource( 1 )
+
+[node name="env_box12" type="CSGBox" parent="Environment"]
+transform = Transform( -4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -3.1158, 14.4279, 27.8929 )
+use_collision = true
+width = 2.33216
+height = 14.0232
+depth = 66.3342
 material = SubResource( 1 )
 
 [node name="env_box11" type="CSGBox" parent="Environment"]

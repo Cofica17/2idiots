@@ -28,7 +28,8 @@ func set_state(v):
 	state.init(player, self)
 	
 	if not null == previous_state:
-		print(state.get_class(), "|", previous_state.get_class(), "|", cnt)
+		#print(state.get_class(), "|", previous_state.get_class(), "|", cnt)
+		print(state.get_class(), " | ", state.min_recoil, " | ", state.max_recoil)
 		cnt += 1
 	
 	state.enter()

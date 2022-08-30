@@ -4,13 +4,17 @@ class_name Jump
 func enter():
 	.enter()
 	min_recoil = 5
+	max_recoil = 9
 	play_animation("jump")
 	
 func get_class() -> String: return "Jump"
 	
 func _physics_process():
 	._physics_process()
-
+	
+	if is_auto_attack():
+		player.player_attack.attack()
+		
 	if not player.is_jumping:
 		player.is_jumping = true
 		player.velocity.y = player.jump_strength

@@ -3,6 +3,8 @@ class_name Run
 
 func enter():
 	.enter()
+	min_recoil = 4
+	max_recoil = 8
 	play_animation("run")
 
 func get_class() -> String: return "Run"
@@ -10,6 +12,8 @@ func get_class() -> String: return "Run"
 func _physics_process():
 	._physics_process()
 	
+	if is_auto_attack():
+		player.player_attack.attack()
 	if Input.is_action_just_pressed(DASH) and player.get_can_dash():
 		locomotion.set_dash_state()
 	if is_jump():

@@ -3,6 +3,8 @@ class_name Slide
 
 func enter():
 	.enter()
+	min_recoil = 5
+	max_recoil = 9
 	play_animation("slide")
 
 func get_class() -> String: return "Slide"

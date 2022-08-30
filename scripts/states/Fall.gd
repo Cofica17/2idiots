@@ -4,7 +4,7 @@ class_name Fall
 func enter():
 	.enter()
 	min_recoil = 5
-	#Play animation
+	max_recoil = 9
 
 func get_class() -> String: return "Fall"
 

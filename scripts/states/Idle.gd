@@ -10,7 +10,7 @@ func get_class() -> String: return "Idle"
 func _physics_process():
 	._physics_process()
 	
-	if is_forward() or is_back():
+	if is_forward() or is_back() or is_left() or is_right():
 		locomotion.set_walk_state()
 	if is_jump():
 		locomotion.set_jump_state()

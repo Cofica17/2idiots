@@ -7,6 +7,8 @@ onready var ui
 export(NodePath) var PlayerPath  = "" #You must specify this in the inspector!
 export(float) var mouse_sensitivity = 4.0
 export var rot_x_limit = 25
+#This gives each point of recoil, #n points in spread circle radius
+export var recoil_to_spread_ratio = 3
 
 var rng = RandomNumberGenerator.new()
 var player:Player
@@ -31,7 +33,7 @@ func _physics_process(delta):
 	rot = Vector2()
 
 func calculate_ray_target() -> Vector2:
-	var R = ui.current_recoil * 2
+	var R = ui.current_recoil * recoil_to_spread_ratio
 	var theta = rng.randf_range(0, 2 * PI)
 	var r = rng.randf_range(0, R)
 	var x = sqrt(r * R) * cos(theta)

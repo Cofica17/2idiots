@@ -2,8 +2,8 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
-#var ip = "127.0.0.1"
-var ip = "194.36.45.181"
+var ip = "127.0.0.1"
+#var ip = "194.36.45.181"
 var latency = 0
 var latency_array = []
 var client_clock = 0.0
@@ -28,7 +28,6 @@ func _on_connection_succeeded():
 	timer.autostart = true
 	timer.connect("timeout", self ,"determine_latency")
 	add_child(timer)
-#	timer.start()
 
 func _on_connection_failed():
 	print("Failed to Connect")

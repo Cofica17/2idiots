@@ -1,7 +1,14 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/StoneFloorTexture.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame2.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame5.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame0.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame3.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame1.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame4.png" type="Texture" id=8]
+[ext_resource path="res://scripts/Crosshair.gd" type="Script" id=9]
 
 [sub_resource type="SpatialMaterial" id=2]
 albedo_texture = ExtResource( 2 )
@@ -10,7 +17,15 @@ albedo_texture = ExtResource( 2 )
 albedo_texture = ExtResource( 2 )
 uv1_scale = Vector3( 10, 10, 10 )
 
-[node name="Spatial" type="Spatial"]
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 6 ), ExtResource( 8 ), ExtResource( 4 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[node name="Game" type="Spatial"]
 
 [node name="Players" type="Spatial" parent="." groups=["Players"]]
 
@@ -27,11 +42,6 @@ material = SubResource( 2 )
 
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03673, 0 )
-
-[node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 0, 29.4039, -119.444 )
-light_energy = 0.583
-shadow_enabled = true
 
 [node name="Environment" type="Spatial" parent="." groups=["Environment"]]
 
@@ -117,3 +127,23 @@ width = 2.33216
 height = 7.16574
 depth = 58.523
 material = SubResource( 1 )
+
+[node name="DirectionalLight" type="DirectionalLight" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 0, 29.4039, -119.444 )
+light_energy = 0.583
+shadow_enabled = true
+
+[node name="UI" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 9 )
+
+[node name="Crosshair" type="Node2D" parent="UI"]
+
+[node name="CrosshairAnimation" type="AnimatedSprite" parent="UI/Crosshair"]
+frames = SubResource( 3 )
+frame = 4
+speed_scale = 3.0
+
+[connection signal="attacked" from="Players/Player" to="UI" method="_on_Player_attacked"]

@@ -21,5 +21,6 @@ func attack() -> void:
 	projectile_instance.set_bullet_direction(bullet_direction)
 	projectile_instance.translation = Vector3.ZERO + Vector3(0,1.5,1)
 	player.add_child(projectile_instance)
+	player.emit_signal("attacked")
 
 

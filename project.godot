@@ -93,6 +93,7 @@ config/icon="res://icon.png"
 [autoload]
 
 LocomotionStates="*res://scripts/LocomotionStates.gd"
+Nodes="*res://scripts/singletons/Nodes.gd"
 
 [display]
 

@@ -12,7 +12,7 @@ export var running_speed = 15
 export var walking_speed = 5
 export var crouch_speed = 3
 export var stopping_speed_ground = 0.2
-export var stopping_speed_slide = 0.01
+export var stopping_speed_slide = 0.02
 export var slide_idle_treshold = 5
 export var stamina = 100
 export var required_sprint_stamina = 1
@@ -35,6 +35,8 @@ var stamina_treshold_reached = true
 var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var player_attack = PlayerAttack.new(self as KinematicBody)
 var velocity = Vector3.ZERO
+
+signal attacked
 
 func _ready():
 	player_locomotion.state_machine = animation_tree.get("parameters/playback")
@@ -81,4 +83,3 @@ func get_can_sprint() -> bool:
 		
 func get_can_dash() -> bool:
 	return required_dash_stamina < stamina 
-

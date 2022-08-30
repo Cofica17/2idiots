@@ -49,11 +49,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/states/Run.gd"
 }, {
-"base": "Reference",
-"class": "ServerMethods",
-"language": "GDScript",
-"path": "res://scripts/server/ServerMethods.gd"
-}, {
 "base": "State",
 "class": "Slide",
 "language": "GDScript",
@@ -78,7 +73,6 @@ _global_script_class_icons={
 "Player": "",
 "PlayerLocomotion": "",
 "Run": "",
-"ServerMethods": "",
 "Slide": "",
 "State": "",
 "Walk": ""

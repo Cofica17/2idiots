@@ -13,16 +13,16 @@ func _physics_process(delta):
 	if world_state_buffer.size() <= 1:
 		return
 	
-	var render_time = OS.get_system_time_msecs() - interpolation_offset 
+	var render_time = Server.client_clock - interpolation_offset 
 	while world_state_buffer.size() > 2 and render_time > world_state_buffer[1].T:
 		world_state_buffer.remove(0)
-	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T)
+	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T) 
+	
 	for player_id in world_state_buffer[1]:
 		if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
 			continue
 		if not world_state_buffer[0].has(player_id):
 			continue
-		
 		var player_clone = get_player_clone_id(player_id)
 		if player_clone:
 			var new_transform = world_state_buffer[0][player_id].P.interpolate_with(world_state_buffer[1][player_id].P, interpolation_factor)
@@ -42,5 +42,5 @@ func receive_player_animation(data):
 		return
 	
 	var p = get_player_clone_id(data.I)
-	if p :
+	if p:
 		p.state_machine.travel(data["A"])

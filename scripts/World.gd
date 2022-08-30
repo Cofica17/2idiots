@@ -1,24 +1,46 @@
 extends Spatial
 
+#[MostRecetPasState, NearestFutureState, AnyOtherFutureStatesRecevied]
+var world_state_buffer := []
 var last_world_state_time:float = 0.0
 
-remote func receive_world_state(world_state:Dictionary):
+const interpolation_offset = 100
+
+func get_player_clone_id(player_id):
+	return get_node("PlayerClone") 
+
+func _physics_process(delta):
+	if world_state_buffer.size() <= 1:
+		return
+	
+	var render_time = OS.get_system_time_msecs() - interpolation_offset 
+	while world_state_buffer.size() > 2 and render_time > world_state_buffer[1].T:
+		world_state_buffer.remove(0)
+	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T)
+	for player_id in world_state_buffer[1]:
+		if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
+			continue
+		if not world_state_buffer[0].has(player_id):
+			continue
+		
+		var player_clone = get_player_clone_id(player_id)
+		if player_clone:
+			var new_transform = world_state_buffer[0][player_id].P.interpolate_with(world_state_buffer[1][player_id].P, interpolation_factor)
+			player_clone.global_transform = new_transform
+		else: #Spawn player
+			pass
+
+func receive_world_state(world_state:Dictionary):
 	if world_state["T"] < last_world_state_time:
 		return
 	
 	last_world_state_time = world_state["T"]
-	world_state.erase("T")
-	world_state.erase(get_tree().get_network_unique_id())
-	
-	for key in world_state:
-		var p = get_node("PlayerClone")
-		if p :
-			p.global_transform = p.global_transform.interpolate_with(world_state[key]["P"], 0.33)
+	world_state_buffer.append(world_state)
 
-remote func receive_player_animation(data):
+func receive_player_animation(data):
 	if data["I"] == Server.network.get_unique_id():
 		return
 	
-	var p = get_node("PlayerClone")
+	var p = get_player_clone_id(data.I)
 	if p :
 		p.state_machine.travel(data["A"])

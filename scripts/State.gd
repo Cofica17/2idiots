@@ -4,6 +4,8 @@ var player:KinematicBody
 var locomotion
 var player_attack
 var locomotion_state
+var min_recoil = 2
+var max_recoil = 5
 
 const MOVE_FORWARD = "move_forward"
 const MOVE_BACK = "move_back"

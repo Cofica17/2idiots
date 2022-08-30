@@ -40,6 +40,28 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.8945, 16.6226 )
 use_collision = true
 material = SubResource( 2 )
 
+[node name="dummy_head2" type="CSGSphere" parent="Players"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 10.3507, -11.527 )
+use_collision = true
+radius = 2.49633
+material = SubResource( 2 )
+
+[node name="dummy_body2" type="CSGSphere" parent="Players"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 13.2399, -11.5634 )
+use_collision = true
+material = SubResource( 2 )
+
+[node name="dummy_head3" type="CSGSphere" parent="Players"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 4.78191, -86.9601 )
+use_collision = true
+radius = 2.49633
+material = SubResource( 2 )
+
+[node name="dummy_body3" type="CSGSphere" parent="Players"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 7.67118, -86.9965 )
+use_collision = true
+material = SubResource( 2 )
+
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03673, 0 )
 

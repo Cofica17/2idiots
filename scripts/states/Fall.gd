@@ -3,6 +3,7 @@ class_name Fall
 
 func enter():
 	.enter()
+	min_recoil = 5
 	#Play animation
 
 func get_class() -> String: return "Fall"

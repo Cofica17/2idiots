@@ -37,17 +37,22 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
-"path": "res://scripts/Player.gd"
+"path": "res://scripts/player/Player.gd"
 }, {
 "base": "Reference",
 "class": "PlayerLocomotion",
 "language": "GDScript",
-"path": "res://scripts/PlayerLocomotion.gd"
+"path": "res://scripts/player/PlayerLocomotion.gd"
 }, {
 "base": "State",
 "class": "Run",
 "language": "GDScript",
 "path": "res://scripts/states/Run.gd"
+}, {
+"base": "Reference",
+"class": "ServerMethods",
+"language": "GDScript",
+"path": "res://scripts/server/ServerMethods.gd"
 }, {
 "base": "State",
 "class": "Slide",
@@ -57,7 +62,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "State",
 "language": "GDScript",
-"path": "res://scripts/State.gd"
+"path": "res://scripts/player/State.gd"
 }, {
 "base": "State",
 "class": "Walk",
@@ -73,6 +78,7 @@ _global_script_class_icons={
 "Player": "",
 "PlayerLocomotion": "",
 "Run": "",
+"ServerMethods": "",
 "Slide": "",
 "State": "",
 "Walk": ""
@@ -86,12 +92,13 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LocomotionStates="*res://scripts/LocomotionStates.gd"
-Server="*res://scripts/singletons/Server.gd"
+LocomotionStates="*res://scripts/player/LocomotionStates.gd"
+Server="*res://scripts/server/Server.gd"
 
 [display]
 
-window/size/width=1200
+window/size/width=800
+window/size/height=400
 
 [gui]
 

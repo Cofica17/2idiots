@@ -3,8 +3,8 @@ class_name Idle
 
 func enter():
 	.enter()
-	min_recoil = 2
-	max_recoil = 6
+	min_recoil = 1
+	max_recoil = 5
 	play_animation("idle")
 
 func get_class() -> String: return "Idle"

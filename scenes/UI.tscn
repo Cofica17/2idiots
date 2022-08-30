@@ -1,36 +1,30 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=12 format=2]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends TextureRect
+[ext_resource path="res://scripts/UI.gd" type="Script" id=1]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame1.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame9.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame4.png" type="Texture" id=4]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame8.png" type="Texture" id=5]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame7.png" type="Texture" id=6]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame3.png" type="Texture" id=7]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame5.png" type="Texture" id=8]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame2.png" type="Texture" id=9]
+[ext_resource path="res://assets/textures/crosshair/frames/Frame6.png" type="Texture" id=10]
 
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 9 ), ExtResource( 7 ), ExtResource( 4 ), ExtResource( 8 ), ExtResource( 10 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
 
-func _ready():
-	draw_empty_circle(Vector2(1,1), Vector2(1,1), \"#ff0000\", 10)
-
-func draw_empty_circle(circle_center, circle_radius, color, resolution):
-	var draw_counter = 1
-	var line_origin = Vector2()
-	var line_end = Vector2()
-	line_origin = circle_radius + circle_center
-
-	while draw_counter <= 360:
-		line_end = circle_radius.rotated(deg2rad(draw_counter)) + circle_center
-		draw_line(line_origin, line_end, color)
-		draw_counter += 1 / resolution
-		line_origin = line_end
-
-	line_end = circle_radius.rotated(deg2rad(360)) + circle_center
-	draw_line(line_origin, line_end, color)
-"
-
-[node name="Control" type="Control"]
+[node name="UI" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-mouse_filter = 1
+mouse_filter = 2
+script = ExtResource( 1 )
 
-[node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 461.0
-margin_top = 176.0
-margin_right = 674.0
-margin_bottom = 389.0
-script = SubResource( 1 )
+[node name="Crosshair" type="AnimatedSprite" parent="."]
+frames = SubResource( 3 )
+frame = 1

@@ -91,7 +91,7 @@ depth = 58.523
 material = SubResource( 1 )
 
 [node name="env_box4" type="CSGBox" parent="Environment"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23916, -112.118 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.23916, -111.789 )
 use_collision = true
 width = 59.8631
 depth = 30.312

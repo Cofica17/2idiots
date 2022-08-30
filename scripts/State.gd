@@ -55,6 +55,7 @@ func is_forward() -> bool:
 	return Input.is_action_pressed(MOVE_FORWARD)
 
 func play_animation(anim):
+	Server.send_player_animation(anim)
 	locomotion.state_machine.travel(anim)
 
 func move_forward(speed):

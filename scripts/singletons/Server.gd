@@ -2,8 +2,8 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
-var ip = "127.0.0.1"
-#var ip = "194.36.45.181"
+#var ip = "127.0.0.1"
+var ip = "194.36.45.181"
 var last_world_state_time:float = 0.0
 
 func _ready():
@@ -29,6 +29,9 @@ func send_player_transform(transform):
 	}
 	rpc_unreliable_id(1, "receive_player_transform", d)
 
+func send_player_animation(anim):
+	rpc_id(1, "receive_player_animation", anim)
+
 remote func receive_world_state(world_state:Dictionary):
 	if world_state["T"] < last_world_state_time:
 		return
@@ -40,3 +43,11 @@ remote func receive_world_state(world_state:Dictionary):
 		var p = get_node("../World/PlayerClone")
 		if p :
 			p.global_transform = world_state[key]["P"]
+
+remote func receive_player_animation(data):
+	if data["I"] == network.get_unique_id():
+		return
+	
+	var p = get_node("../World/PlayerClone")
+	if p :
+		p.state_machine.travel(data["A"])

@@ -1,17 +1,21 @@
 extends State
 class_name Slide
 
+var slide_speed = 0.0
+
 func enter():
 	.enter()
+	slide_speed = player.running_speed
 	play_animation(LocomotionStates.ANIMATIONS.SLIDE)
 
 func get_class() -> String: return "Slide"
 
 func _physics_process():
 	._physics_process()
-	player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_slide)
+	slide_speed = lerp(slide_speed, 0, player.stopping_speed_slide)
+	move_forward(slide_speed)
 	
-	if player.velocity.length() < player.slide_idle_treshold:
+	if player.velocity.length() <= player.slide_idle_treshold:
 		if is_crouch():
 			locomotion.set_crouch_state()
 			return

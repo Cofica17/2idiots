@@ -24,11 +24,12 @@ func _physics_process():
 	if not is_sprint():
 		locomotion.set_walk_state()
 		return
-		
-	if is_forward():
+	
+	
+	if is_direction():
 		if player.get_can_sprint():
 			player.change_stamina(-player.stamina_loss)
-			move_forward(player.running_speed)
+			move(player.running_speed)
 		else:
 			locomotion.set_walk_state()
 			return

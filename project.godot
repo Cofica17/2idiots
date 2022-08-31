@@ -91,8 +91,8 @@ Server="*res://scripts/server/Server.gd"
 
 [display]
 
-window/size/width=800
-window/size/height=400
+window/size/width=1600
+window/size/height=800
 
 [gui]
 

@@ -115,13 +115,21 @@ func move(speed, front=true,right=true,back=true,left=true):
 	last_model_rot = model_rot
 
 func move_forward(speed):
+	var v_y = player.velocity.y
 	player.velocity = player.global_transform.basis.z * speed
+	player.velocity.y = v_y
 
 func move_back(speed):
+	var v_y = player.velocity.y
 	player.velocity = -player.global_transform.basis.z * speed
+	player.velocity.y = v_y
 
 func move_left(speed):
+	#var v_y = player.velocity.y
 	player.velocity = player.global_transform.basis.x * speed
+	#player.velocity.y = v_y
 
 func move_right(speed):
+	#var v_y = player.velocity.y
 	player.velocity = -player.global_transform.basis.x * speed
+	#player.velocity.y = v_y

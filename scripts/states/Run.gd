@@ -4,7 +4,9 @@ class_name Run
 func enter():
 	.enter()
 	set_recoil(4,8)
-	play_animation("run")
+	play_animation(LocomotionStates.ANIMATIONS.RUN)
+	if not player.get_can_sprint():
+		locomotion.set_state(locomotion.previous_state)
 
 func get_class() -> String: return "Run"
 
@@ -15,21 +17,28 @@ func _physics_process():
 		player.player_attack.attack()
 	if Input.is_action_just_pressed(DASH) and player.get_can_dash():
 		locomotion.set_dash_state()
+		return
 	if is_jump():
 		locomotion.set_jump_state()
+		return
 	if is_crouch():
 		locomotion.set_slide_state()
+		return
 	if not is_sprint():
 		locomotion.set_walk_state()
-		
-	if is_forward():
+		return
+	
+	
+	if is_direction():
 		if player.get_can_sprint():
 			player.change_stamina(-player.stamina_loss)
-			move_forward(player.running_speed)
+			move(player.running_speed)
 		else:
 			locomotion.set_walk_state()
+			return
 	else:
 		locomotion.set_idle_state()
+		return
 
 func exit():
 	.exit()

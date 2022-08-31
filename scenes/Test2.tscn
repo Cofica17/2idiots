@@ -175,5 +175,3 @@ script = ExtResource( 9 )
 [node name="Crosshair" type="AnimatedSprite" parent="UI"]
 frames = SubResource( 3 )
 frame = 1
-
-[connection signal="attacked" from="Players/Player" to="UI" method="_on_Player_attacked"]

@@ -4,7 +4,7 @@ class_name Jump
 func enter():
 	.enter()
 	set_recoil(5,9)
-	play_animation("jump")
+	play_animation(LocomotionStates.ANIMATIONS.JUMP)
 	
 func get_class() -> String: return "Jump"
 	
@@ -20,6 +20,7 @@ func _physics_process():
 		
 	elif player.velocity.y < 0:
 		locomotion.set_fall_state()
+		return
 	
 	if locomotion.previous_state is Idle:
 		if is_forward():

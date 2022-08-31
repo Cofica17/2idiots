@@ -37,7 +37,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Player",
 "language": "GDScript",
-"path": "res://scripts/Player.gd"
+"path": "res://scripts/player/Player.gd"
 }, {
 "base": "Node",
 "class": "PlayerAttack",
@@ -47,7 +47,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PlayerLocomotion",
 "language": "GDScript",
-"path": "res://scripts/PlayerLocomotion.gd"
+"path": "res://scripts/player/PlayerLocomotion.gd"
 }, {
 "base": "State",
 "class": "Run",
@@ -62,7 +62,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "State",
 "language": "GDScript",
-"path": "res://scripts/State.gd"
+"path": "res://scripts/player/State.gd"
 }, {
 "base": "State",
 "class": "Walk",
@@ -92,14 +92,14 @@ config/icon="res://icon.png"
 
 [autoload]
 
-LocomotionStates="*res://scripts/LocomotionStates.gd"
-Server="res://scripts/singletons/Server.gd"
+LocomotionStates="*res://scripts/player/LocomotionStates.gd"
+Server="*res://scripts/server/Server.gd"
 Nodes="*res://scripts/singletons/Nodes.gd"
 
 [display]
 
-window/size/width=1920
-window/size/height=1080
+window/size/width=1600
+window/size/height=800
 
 [gui]
 
@@ -165,6 +165,7 @@ mouse_mode={
 
 [physics]
 
+common/physics_fps=120
 common/enable_pause_aware_picking=true
 
 [rendering]

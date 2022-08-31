@@ -18,7 +18,7 @@ func _physics_process():
 	if is_dash() and player.can_dash:
 		locomotion.set_dash_state()
 		return
-	if is_sprint() and not is_back():
+	if is_sprint() and not is_back() and not is_left() and not is_right():
 		locomotion.set_run_state()
 		return
 	

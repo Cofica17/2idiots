@@ -13,7 +13,7 @@ func get_class() -> String: return "Slide"
 func _physics_process():
 	._physics_process()
 	slide_speed = lerp(slide_speed, 0, player.stopping_speed_slide)
-	move_forward(slide_speed)
+	move(slide_speed)
 	
 	if player.velocity.length() <= player.slide_idle_treshold:
 		if is_crouch():

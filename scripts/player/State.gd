@@ -101,7 +101,7 @@ func move(speed, front=true,right=true,back=true,left=true):
 			player.model.rotation_degrees.y = 405
 	
 	player.velocity = velocity
-	player.model.rotation_degrees.y = lerp(player.model.rotation_degrees.y, model_rot, 0.1)
+	player.model.rotation_degrees.y = lerp(player.model.rotation_degrees.y, model_rot, 0.06)
 	last_model_rot = model_rot
 
 func move_forward(speed):

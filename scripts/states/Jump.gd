@@ -3,8 +3,7 @@ class_name Jump
 
 func enter():
 	.enter()
-	min_recoil = 5
-	max_recoil = 9
+	set_recoil(5,9)
 	play_animation("jump")
 	
 func get_class() -> String: return "Jump"

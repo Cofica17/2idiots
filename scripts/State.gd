@@ -22,6 +22,10 @@ func init(_player, _locomotion):
 	player = _player
 	locomotion = _locomotion
 
+func set_recoil(_min, _max):
+	min_recoil = _min
+	max_recoil = _max
+	
 func enter():
 	pass
 

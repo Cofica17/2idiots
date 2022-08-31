@@ -3,8 +3,7 @@ class_name Crouch
 
 func enter():
 	.enter()
-	min_recoil = 0
-	max_recoil = 4
+	set_recoil(0,4)
 	play_animation("crouch_idle")
 
 func get_class() -> String: return "Crouch"
@@ -18,20 +17,17 @@ func _physics_process():
 		locomotion.set_idle_state()
 		
 	if is_forward():
-		min_recoil = 2
-		max_recoil = 6
+		set_recoil(2,6)
 		play_animation("crouch")
 		move_forward(player.crouch_speed)
 	elif is_back():
-		min_recoil = 2
-		max_recoil = 6
+		set_recoil(2,6)
 		play_animation("crouch")
 		move_back(player.crouch_speed)
 	else:
 		if locomotion.state_machine.get_current_node() != "crouch_idle":
 			play_animation("crouch_idle")
-			min_recoil = 0
-			max_recoil = 4
+			set_recoil(0,4)
 		player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
 
 func exit():

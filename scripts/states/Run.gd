@@ -3,8 +3,7 @@ class_name Run
 
 func enter():
 	.enter()
-	min_recoil = 4
-	max_recoil = 8
+	set_recoil(4,8)
 	play_animation("run")
 
 func get_class() -> String: return "Run"

@@ -55,11 +55,11 @@ func is_forward() -> bool:
 	return Input.is_action_pressed(MOVE_FORWARD)
 
 func play_animation(anim):
-	if locomotion.state_machine.get_current_node() == anim:
+	if player.animation_tree["parameters/state/current"] == anim:
 		return
 	
 	Server.send_player_animation(anim)
-	locomotion.state_machine.travel(anim)
+	player.animation_tree["parameters/state/current"] = anim
 
 func move_forward(speed):
 	player.velocity = player.global_transform.basis.z * speed

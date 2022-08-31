@@ -38,7 +38,6 @@ var user_id
 
 func _ready():
 	user_id = get_tree().get_network_unique_id()
-	player_locomotion.state_machine = animation_tree.get("parameters/playback")
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
 

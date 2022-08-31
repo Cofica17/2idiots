@@ -1,9 +1,14 @@
 extends Node
 
-enum STATES {
+enum ANIMATIONS {
 	IDLE,
-	WALK,
+	SLOW_RUN,
 	RUN,
+	WALK_BACK,
+	WALK_LEFT,
+	WALK_RIGHT,
 	JUMP,
-	FALL
+	SLIDE,
+	CROUCH,
+	CROUCH_IDLE
 }

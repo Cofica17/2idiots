@@ -22,11 +22,11 @@ func _physics_process():
 		locomotion.set_fall_state()
 		return
 	
-	if locomotion.previous_state is Idle:
-		if is_forward():
-			move_forward(player.walking_speed)
-		elif is_back():
-			move_back(player.walking_speed)
+	if locomotion.previous_state is Idle or locomotion.previous_state is Walk or locomotion.previous_state is Run:
+		var vel = player.walking_speed
+		if locomotion.previous_state is Run:
+			vel = player.running_speed
+		move(vel)
 
 func exit():
 	.exit()

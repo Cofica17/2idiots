@@ -24,7 +24,7 @@ func _physics_process():
 		locomotion.set_crouch_state()
 		return
 	
-	player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
+	set_player_velocity(lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground))
 
 func exit():
 	.exit()

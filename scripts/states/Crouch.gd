@@ -17,18 +17,14 @@ func _physics_process():
 		locomotion.set_idle_state()
 		return
 	
-	if is_forward():
+	if is_direction():
 		set_recoil(2,6)
 		play_animation(LocomotionStates.ANIMATIONS.CROUCH)
-		move_forward(player.crouch_speed)
-	elif is_back():
-		set_recoil(2,6)
-		play_animation(LocomotionStates.ANIMATIONS.CROUCH)
-		move_back(player.crouch_speed)
+		move(player.crouch_speed)
 	else:
 		play_animation(LocomotionStates.ANIMATIONS.CROUCH_IDLE)
 		set_recoil(0,4)
-		player.velocity = lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground)
+		set_player_velocity(lerp(player.velocity, Vector3.ZERO, player.stopping_speed_ground))
 
 func exit():
 	.exit()

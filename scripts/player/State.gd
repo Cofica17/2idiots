@@ -110,26 +110,23 @@ func move(speed, front=true,right=true,back=true,left=true):
 		if last_model_rot == 45:
 			player.model.rotation_degrees.y = 405
 	
-	player.velocity = velocity
+	set_player_velocity(velocity)
 	player.model.rotation_degrees.y = lerp(player.model.rotation_degrees.y, model_rot, 0.06)
 	last_model_rot = model_rot
 
 func move_forward(speed):
-	var v_y = player.velocity.y
-	player.velocity = player.global_transform.basis.z * speed
-	player.velocity.y = v_y
+	set_player_velocity(player.global_transform.basis.z * speed)
 
 func move_back(speed):
-	var v_y = player.velocity.y
-	player.velocity = -player.global_transform.basis.z * speed
-	player.velocity.y = v_y
+	set_player_velocity(-player.global_transform.basis.z * speed)
 
 func move_left(speed):
-	#var v_y = player.velocity.y
-	player.velocity = player.global_transform.basis.x * speed
-	#player.velocity.y = v_y
+	set_player_velocity(player.global_transform.basis.x * speed)
 
 func move_right(speed):
-	#var v_y = player.velocity.y
-	player.velocity = -player.global_transform.basis.x * speed
-	#player.velocity.y = v_y
+	set_player_velocity(-player.global_transform.basis.x * speed)
+
+func set_player_velocity(velocity):
+	var v_y = player.velocity.y
+	player.velocity = velocity
+	player.velocity.y = v_y

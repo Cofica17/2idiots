@@ -17,6 +17,7 @@ const CROUCH = "crouch"
 const DASH = "dash"
 const SLIDE = "slide"
 const AUTO_ATTACK = "auto_attack"
+const SCOPE = "scope"
 
 func init(_player, _locomotion):
 	player = _player
@@ -29,6 +30,10 @@ func get_class():
 	pass
 
 func _physics_process():
+	if is_scope_in():
+		player.emit_signal("scope_in")
+	if is_scope_out():
+		player.emit_signal("scope_out")
 	pass
 
 func exit():
@@ -67,6 +72,12 @@ func is_auto_attack() -> bool:
 
 func is_direction() -> bool:
 	return is_forward() or is_left() or is_right() or is_back()
+
+func is_scope_in() -> bool:
+	return Input.is_action_just_pressed(SCOPE)
+	
+func is_scope_out() -> bool:
+	return Input.is_action_just_released(SCOPE)
 
 func play_animation(anim):
 	if player.animation_tree["parameters/state/current"] == anim:

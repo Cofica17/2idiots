@@ -38,6 +38,8 @@ var velocity = Vector3.ZERO
 var user_id
 
 signal attacked
+signal scope_in
+signal scope_out
 
 func _ready():
 	user_id = get_tree().get_network_unique_id()

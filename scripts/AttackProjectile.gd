@@ -8,7 +8,7 @@ onready var player_group_members = get_tree().get_nodes_in_group(PLAYER_GROUP)[0
 
 export var gravity = Vector3(0, -10, 0)
 export var velocity = Vector3.ZERO
-export var speed = 150
+export var speed = 75
 export var destroy_distance = 200
 
 var bullet_direction = Vector3.ZERO

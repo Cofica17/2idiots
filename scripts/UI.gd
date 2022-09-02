@@ -12,7 +12,7 @@ var current_recoil = 1
 var time = 0
 
 func _ready():
-	player.connect("attacked", self, "_on_Player_attacked")
+	player.connect("attacked", self, "_on_player_attacked")
 	var viewport_size = get_viewport_rect().size
 	crosshair.global_position = Vector2(viewport_size.x / 2, viewport_size.y / 2 + crosshair_offset * viewport_size.y)
 	
@@ -31,6 +31,6 @@ func adjust_recoil(delta) -> void:
 	if current_recoil < min_recoil:
 		current_recoil = min_recoil
 		
-func _on_Player_attacked():
+func _on_player_attacked():
 	if current_recoil < max_recoil:
 		current_recoil += 1

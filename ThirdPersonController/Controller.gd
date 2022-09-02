@@ -15,7 +15,8 @@ var player:Player
 var rot := Vector2.ZERO
 var field_of_view = 70
 var scope_field_of_view = 50
-var fov_change = 0.5
+var fov_scope_in_change = 0.5
+var fov_scope_out_change = 0.75
 var target_field_of_view = field_of_view
 
 func _ready():
@@ -30,9 +31,9 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	if camera.fov > target_field_of_view:
-		camera.set_perspective(camera.fov - fov_change, 0.05, 100)
+		camera.set_perspective(camera.fov - fov_scope_in_change, 0.05, 100)
 	elif camera.fov < target_field_of_view:
-		camera.set_perspective(camera.fov + fov_change, 0.05, 100)
+		camera.set_perspective(camera.fov + fov_scope_out_change, 0.05, 100)
 
 	player.rotate_y(deg2rad(-rot.x)*delta*mouse_sensitivity)
 	inner_gimbal.rotate_x(deg2rad(rot.y)*delta*mouse_sensitivity)

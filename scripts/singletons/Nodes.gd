@@ -4,7 +4,6 @@ onready var player = get_node("/root/Game/Players/Player")
 onready var crosshair = get_node("/root/Game/UI/CrosshairContainer")
 
 func _ready():
-	print(crosshair)
 	pass
 	
 func get_player() -> KinematicBody:

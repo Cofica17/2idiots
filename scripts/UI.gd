@@ -13,14 +13,17 @@ var time = 0
 
 func _ready():
 	player.connect("attacked", self, "_on_player_attacked")
-	var viewport_size = get_viewport_rect().size
-	crosshair.global_position = Vector2(viewport_size.x / 2, viewport_size.y / 2 + crosshair_offset * viewport_size.y)
+
 	
 func _physics_process(delta):
 	min_recoil = player.player_locomotion.state.min_recoil
 	max_recoil = player.player_locomotion.state.max_recoil
+	print(crosshair.rect_scale)
 	adjust_recoil(delta)
-	crosshair.frame = current_recoil
+	var v = Vector2(current_recoil, current_recoil)
+	crosshair.rect_scale = v
+	var viewport_size = get_viewport_rect().size
+	crosshair.set_global_position(Vector2(viewport_size.x / 2, viewport_size.y / 2 + crosshair_offset * viewport_size.y))
 	
 func adjust_recoil(delta) -> void:
 	time += delta

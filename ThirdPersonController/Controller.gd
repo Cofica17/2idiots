@@ -2,7 +2,7 @@ extends Spatial
 
 onready var inner_gimbal = $InnerGimbal
 onready var camera = $InnerGimbal/Camera
-onready var ui
+onready var crosshair
 
 export(NodePath) var PlayerPath  = "" #You must specify this in the inspector!
 export(float) var mouse_sensitivity = 5.0
@@ -21,7 +21,7 @@ var target_field_of_view = field_of_view
 
 func _ready():
 	rng.randomize()
-	ui = Nodes.get_ui()
+	crosshair = Nodes.get_crosshair()
 	player = get_node(PlayerPath)
 	connect_signals()
 
@@ -47,7 +47,7 @@ func _on_player_scope_out():
 	target_field_of_view = field_of_view
 
 func calculate_ray_target() -> Vector2:
-	var R = ui.current_recoil * recoil_to_spread_ratio
+	var R = crosshair.current_recoil * recoil_to_spread_ratio
 	var theta = rng.randf_range(0, 2 * PI)
 	var r = rng.randf_range(0, R)
 	var x = sqrt(r * R) * cos(theta)

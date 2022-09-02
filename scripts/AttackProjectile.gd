@@ -6,7 +6,8 @@ const ENVIRONMENT_GROUP = "Environment"
 onready var environment_group_members = get_tree().get_nodes_in_group(ENVIRONMENT_GROUP)[0].get_children()
 onready var player_group_members = get_tree().get_nodes_in_group(PLAYER_GROUP)[0].get_children()
 
-export var gravity = Vector3(0, -5, 0)
+#export var gravity = Vector3(0, -5, 0)
+export var gravity = Vector3(0, 0, 0)
 export var velocity = Vector3.ZERO
 export var speed = 150
 export var destroy_distance = 100

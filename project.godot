@@ -98,7 +98,8 @@ Nodes="*res://scripts/singletons/Nodes.gd"
 
 [display]
 
-window/size/width=1000
+window/size/width=1500
+window/size/height=900
 
 [gui]
 

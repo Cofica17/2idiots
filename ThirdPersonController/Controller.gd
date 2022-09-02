@@ -41,11 +41,9 @@ func _physics_process(delta):
 
 func _on_player_scope_in():
 	target_field_of_view = scope_field_of_view
-	print("Scope in")
 
 func _on_player_scope_out():
 	target_field_of_view = field_of_view
-	print("Scope out")
 
 func calculate_ray_target() -> Vector2:
 	var R = ui.current_recoil * recoil_to_spread_ratio

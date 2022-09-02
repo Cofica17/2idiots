@@ -56,7 +56,6 @@ func _input(event):
 
 func _physics_process(delta):
 	Server.send_player_transform(global_transform)
-	#print(stamina)
 	apply_gravity(delta)
 	apply_stamina() 
 	player_locomotion._physics_process()

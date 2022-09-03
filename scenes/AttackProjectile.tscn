@@ -2,7 +2,7 @@
 
 [ext_resource path="res://scripts/AttackProjectile.gd" type="Script" id=1]
 [ext_resource path="res://assets/particles/flare_01.png" type="Texture" id=2]
-[ext_resource path="res://assets/particles/dirt_01.png" type="Texture" id=3]
+[ext_resource path="res://assets/particles/flame_05.png" type="Texture" id=3]
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.329913
@@ -22,8 +22,8 @@ particles_anim_loop = false
 albedo_texture = ExtResource( 3 )
 
 [sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0, 0.00645161, 0.535484, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.329224, 0.47348, 0.90625, 1, 0.0742188, 0.761322, 1, 1, 0, 0.231445, 0.925781, 1 )
+offsets = PoolRealArray( 0, 0.0129032, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0182495, 0.0390777, 0.101563, 1, 0, 0.231445, 0.925781, 1 )
 
 [sub_resource type="GradientTexture" id=9]
 gradient = SubResource( 8 )
@@ -61,7 +61,7 @@ albedo_texture = ExtResource( 2 )
 
 [sub_resource type="Gradient" id=11]
 offsets = PoolRealArray( 0, 0.503226, 1 )
-colors = PoolColorArray( 0.00784314, 0.32549, 1, 0, 0.141176, 0.615686, 1, 0.32549, 0.249023, 0.554643, 0.996094, 1 )
+colors = PoolColorArray( 0.00784314, 0.32549, 1, 1, 0.141176, 0.615686, 1, 0.47451, 0.25098, 0.552941, 0.996078, 0.0156863 )
 
 [sub_resource type="GradientTexture" id=12]
 gradient = SubResource( 11 )
@@ -98,7 +98,8 @@ material = SubResource( 1 )
 
 [node name="Bolt" type="Particles" parent="."]
 material_override = SubResource( 3 )
-amount = 40
+amount = 200
+lifetime = 0.6
 process_material = SubResource( 4 )
 draw_pass_1 = SubResource( 5 )
 

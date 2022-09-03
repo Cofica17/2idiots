@@ -5,10 +5,11 @@ const ENVIRONMENT_GROUP = "Environment"
 
 onready var environment_group_members = get_tree().get_nodes_in_group(ENVIRONMENT_GROUP)[0].get_children()
 onready var player_group_members = get_tree().get_nodes_in_group(PLAYER_GROUP)[0].get_children()
+onready var player = Nodes.get_player()
 
 export var gravity = Vector3(0, -10, 0)
 export var velocity = Vector3.ZERO
-export var speed = 75
+export var speed = 150
 export var destroy_distance = 200
 
 var bullet_direction = Vector3.ZERO
@@ -30,6 +31,9 @@ func set_bullet_direction(direction) -> void:
 
 func proximity_handler() -> void:
 	if translation.distance_to(Nodes.get_player().translation) > destroy_distance:
+		var sparks = $Sparks
+		remove_child($Sparks)
+		player.add_child(sparks)
 		print("Went Far Away")
 		queue_free()
 		

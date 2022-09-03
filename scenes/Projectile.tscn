@@ -1,0 +1,98 @@
+[gd_scene load_steps=16 format=2]
+
+[ext_resource path="res://assets/particles/flare_01.png" type="Texture" id=1]
+[ext_resource path="res://assets/particles/scorch_03.png" type="Texture" id=2]
+
+[sub_resource type="SphereShape" id=13]
+radius = 0.276712
+
+[sub_resource type="SpatialMaterial" id=14]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 2 )
+
+[sub_resource type="Gradient" id=15]
+offsets = PoolRealArray( 0, 0.0129032, 1 )
+colors = PoolColorArray( 0, 0, 0, 1, 0.0182495, 0.0390777, 0.101563, 1, 0, 0.231445, 0.925781, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 15 )
+
+[sub_resource type="Curve" id=16]
+_data = [ Vector2( 0, 0.845455 ), 0.0, 0.0, 0, 0, Vector2( 0.303371, 0.990909 ), -0.0269697, -0.0269697, 0, 0, Vector2( 0.696629, 0.972727 ), 0.0, 0.0, 0, 0, Vector2( 0.988764, 0.809091 ), -0.0904573, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 16 )
+
+[sub_resource type="ParticlesMaterial" id=17]
+emission_shape = 1
+emission_sphere_radius = 0.08
+gravity = Vector3( 0, 0, 0 )
+angular_velocity = 15.0
+angular_velocity_random = 1.0
+angle = 360.0
+angle_random = 1.0
+scale = 1.2
+scale_curve = SubResource( 7 )
+color_ramp = SubResource( 9 )
+
+[sub_resource type="QuadMesh" id=18]
+
+[sub_resource type="SpatialMaterial" id=19]
+flags_transparent = true
+flags_unshaded = true
+vertex_color_use_as_albedo = true
+params_blend_mode = 1
+params_billboard_mode = 3
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+albedo_texture = ExtResource( 1 )
+
+[sub_resource type="Gradient" id=20]
+offsets = PoolRealArray( 0, 0.503226, 1 )
+colors = PoolColorArray( 0.00784314, 0.32549, 1, 1, 0.141176, 0.615686, 1, 0.47451, 0.25098, 0.552941, 0.996078, 0.0156863 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 20 )
+
+[sub_resource type="ParticlesMaterial" id=21]
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 2.0
+initial_velocity_random = 0.37
+linear_accel = -0.1
+linear_accel_random = 0.33
+angle = 360.0
+angle_random = 1.0
+scale = 1.3
+color_ramp = SubResource( 12 )
+
+[sub_resource type="QuadMesh" id=22]
+
+[node name="Projectile" type="KinematicBody"]
+
+[node name="ProjectileCollision" type="CollisionShape" parent="."]
+shape = SubResource( 13 )
+disabled = true
+
+[node name="Bolt" type="Particles" parent="."]
+material_override = SubResource( 14 )
+amount = 200
+lifetime = 0.6
+process_material = SubResource( 17 )
+draw_pass_1 = SubResource( 18 )
+
+[node name="Sparks" type="Particles" parent="."]
+material_override = SubResource( 19 )
+amount = 20
+lifetime = 0.5
+local_coords = false
+process_material = SubResource( 21 )
+draw_pass_1 = SubResource( 22 )

@@ -53,7 +53,7 @@ material = SubResource( 2 )
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03673, 0 )
 
 [node name="ProjectileRing" parent="Players/Player" instance=ExtResource( 4 )]
-transform = Transform( -0.299917, 0.00705746, -3.08491e-10, 0, -1.31134e-08, -0.3, -0.00705746, -0.299917, 1.31098e-08, -0.0357253, 1, -0.00368091 )
+transform = Transform( -0.299917, 0.00705747, -3.08492e-10, 0, -1.31134e-08, -0.3, -0.00705747, -0.299917, 1.31098e-08, -0.0357253, 1, -0.00368091 )
 
 [node name="Environment" type="Spatial" parent="." groups=["Environment"]]
 

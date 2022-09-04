@@ -20,7 +20,8 @@ func _physics_process(delta):
 
 func render_projectiles() -> void:
 	for i in range(0, projectile_number):
-		var p = projectile.instance()
+		var p = null
+		p = projectile.instance()
 		var x = sqrt(radius) * cos(projectile_angle_distance * i)
 		var y = sqrt(radius) * sin(projectile_angle_distance * i) 
 		p.translation = Vector3.ZERO + Vector3(x,y,0)
@@ -31,6 +32,6 @@ func rotate_projectiles() -> void:
 	rotate(Vector3(0,1,0), rotation_angle_y)
 
 func _on_player_attacked():
-#	if get_child_count() > 0:
-#		get_children()[0].queue_free()
+	#if get_child_count() > 0:
+		#get_children()[0].queue_free()
 	pass

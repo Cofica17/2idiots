@@ -25,6 +25,7 @@ func attack() -> void:
 	var r1 = rng.randf_range(-3,3)
 	var r2 = rng.randf_range(1,3)
 	#Testing
+	#print(player.get_child(0))
 	projectile_instance.translation = Vector3.ZERO + Vector3(r1,1,1)
 	player.add_child(projectile_instance)
 	player.emit_signal("attacked")

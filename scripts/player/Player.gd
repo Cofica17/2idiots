@@ -42,6 +42,7 @@ signal scope_in
 signal scope_out
 
 func _ready():
+	print(get_node("ProjectileRing"))
 	user_id = get_tree().get_network_unique_id()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)

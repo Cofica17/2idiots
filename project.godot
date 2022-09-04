@@ -100,6 +100,7 @@ Nodes="*res://scripts/singletons/Nodes.gd"
 
 window/size/width=1500
 window/size/height=900
+window/size/fullscreen=true
 
 [gui]
 

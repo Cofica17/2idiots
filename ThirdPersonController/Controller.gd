@@ -31,9 +31,9 @@ func _unhandled_input(event):
 
 func _physics_process(delta):
 	if camera.fov > target_field_of_view:
-		camera.set_perspective(camera.fov - fov_scope_in_change, 0.05, 100)
+		camera.fov -= fov_scope_in_change
 	elif camera.fov < target_field_of_view:
-		camera.set_perspective(camera.fov + fov_scope_out_change, 0.05, 100)
+		camera.fov += fov_scope_out_change
 
 	player.rotate_y(deg2rad(-rot.x)*delta*mouse_sensitivity)
 	inner_gimbal.rotate_x(deg2rad(rot.y)*delta*mouse_sensitivity)

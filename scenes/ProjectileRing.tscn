@@ -3,4 +3,5 @@
 [ext_resource path="res://scripts/ProjectileRing.gd" type="Script" id=1]
 
 [node name="ProjectileRing" type="Spatial"]
+transform = Transform( 0.3, 0, 0, 0, -1.31134e-08, -0.3, 0, 0.3, -1.31134e-08, 0, 0, 0 )
 script = ExtResource( 1 )

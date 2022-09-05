@@ -1,84 +1,12 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scripts/AttackProjectile.gd" type="Script" id=1]
-[ext_resource path="res://assets/particles/smoke_03.png" type="Texture" id=2]
-[ext_resource path="res://assets/particles/flame_05.png" type="Texture" id=3]
 
 [sub_resource type="SphereShape" id=2]
 radius = 0.329913
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_color = Color( 0.372549, 0.780392, 1, 1 )
-
-[sub_resource type="SpatialMaterial" id=3]
-flags_transparent = true
-flags_unshaded = true
-vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-albedo_texture = ExtResource( 3 )
-
-[sub_resource type="Gradient" id=8]
-offsets = PoolRealArray( 0, 0.0129032, 1 )
-colors = PoolColorArray( 0, 0, 0, 1, 0.0182495, 0.0390777, 0.101563, 1, 0, 0.231445, 0.925781, 1 )
-
-[sub_resource type="GradientTexture" id=15]
-gradient = SubResource( 8 )
-
-[sub_resource type="Curve" id=6]
-_data = [ Vector2( 0, 0.845455 ), 0.0, 0.0, 0, 0, Vector2( 0.303371, 0.990909 ), -0.0269697, -0.0269697, 0, 0, Vector2( 0.696629, 0.972727 ), 0.0, 0.0, 0, 0, Vector2( 0.988764, 0.809091 ), -0.0904573, 0.0, 0, 0 ]
-
-[sub_resource type="CurveTexture" id=16]
-curve = SubResource( 6 )
-
-[sub_resource type="ParticlesMaterial" id=4]
-emission_shape = 1
-emission_sphere_radius = 0.08
-gravity = Vector3( 0, 0, 0 )
-angular_velocity = 15.0
-angular_velocity_random = 1.0
-angle = 360.0
-angle_random = 1.0
-scale = 1.2
-scale_curve = SubResource( 16 )
-color_ramp = SubResource( 15 )
-
-[sub_resource type="QuadMesh" id=5]
-
-[sub_resource type="SpatialMaterial" id=10]
-flags_transparent = true
-flags_unshaded = true
-vertex_color_use_as_albedo = true
-params_blend_mode = 1
-params_billboard_mode = 3
-particles_anim_h_frames = 1
-particles_anim_v_frames = 1
-particles_anim_loop = false
-albedo_texture = ExtResource( 2 )
-
-[sub_resource type="Gradient" id=11]
-offsets = PoolRealArray( 0, 0.503226, 1 )
-colors = PoolColorArray( 0.00784314, 0.32549, 1, 1, 0.141176, 0.615686, 1, 0.47451, 0.25098, 0.552941, 0.996078, 0.0156863 )
-
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 11 )
-
-[sub_resource type="ParticlesMaterial" id=13]
-spread = 180.0
-gravity = Vector3( 0, 0, 0 )
-initial_velocity = 2.0
-initial_velocity_random = 0.37
-linear_accel = -0.1
-linear_accel_random = 0.33
-angle = 360.0
-angle_random = 1.0
-scale = 1.3
-color_ramp = SubResource( 17 )
-
-[sub_resource type="QuadMesh" id=14]
 
 [node name="AutoAttack" type="KinematicBody"]
 script = ExtResource( 1 )
@@ -96,18 +24,3 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00357881, 0, 0 )
 visible = false
 radius = 0.104738
 material = SubResource( 1 )
-
-[node name="Bolt" type="Particles" parent="."]
-material_override = SubResource( 3 )
-amount = 200
-lifetime = 0.6
-process_material = SubResource( 4 )
-draw_pass_1 = SubResource( 5 )
-
-[node name="Sparks" type="Particles" parent="."]
-material_override = SubResource( 10 )
-amount = 20
-lifetime = 2.0
-local_coords = false
-process_material = SubResource( 13 )
-draw_pass_1 = SubResource( 14 )

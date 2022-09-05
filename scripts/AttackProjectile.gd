@@ -31,9 +31,6 @@ func set_bullet_direction(direction) -> void:
 
 func proximity_handler() -> void:
 	if translation.distance_to(Nodes.get_player().translation) > destroy_distance:
-		var sparks = $Sparks
-		remove_child($Sparks)
-		player.add_child(sparks)
 		print("Went Far Away")
 		queue_free()
 		

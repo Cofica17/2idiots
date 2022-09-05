@@ -10,6 +10,7 @@ var latency_array = []
 var client_clock = 0.0
 var delta_latency = 0
 var decimal_collector:float = 0.0
+var world_str = "../World"
 
 func _ready():
 	connect_to_server()
@@ -67,10 +68,19 @@ remote func return_latency(client_time):
 		latency_array.clear()
 
 remote func receive_world_state(world_state:Dictionary):
-	get_node("../World").receive_world_state(world_state)
+	get_node(world_str).receive_world_state(world_state)
 
 remote func receive_player_animation(data):
-	get_node("../World").receive_player_animation(data)
+	get_node(world_str).receive_player_animation(data)
+
+remote func receive_player_basic_attack(data):
+	get_node(world_str).receive_player_basic_attack(data)
+
+remote func receive_player_scope_in(id):
+	get_node(world_str).receive_player_scope_in(id)
+
+remote func receive_player_scope_out(id):
+	get_node(world_str).receive_player_scope_out(id)
 
 ########################
 ### FOR SENDING INFO ###
@@ -97,3 +107,21 @@ func send_player_animation(anim):
 		return
 	
 	rpc_id(1, "receive_player_animation", anim)
+
+func send_player_basic_attack(attack, global_pos):
+	if not connected:
+		return
+	
+	var data = {
+		"T" : client_clock,
+		"A" : attack,
+		"P" : global_pos
+	}
+	
+	rpc_id(1, "receive_player_basic_attack", data)
+
+func send_player_scope_in():
+	rpc_id(1, "receive_player_scope_in")
+
+func send_player_scope_out():
+	rpc_id(1, "receive_player_scope_out")

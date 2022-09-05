@@ -1,52 +1,21 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/StoneFloorTexture.png" type="Texture" id=2]
 [ext_resource path="res://scenes/UI.tscn" type="PackedScene" id=3]
-
-[sub_resource type="SpatialMaterial" id=2]
-albedo_texture = ExtResource( 2 )
+[ext_resource path="res://scripts/World.gd" type="Script" id=4]
 
 [sub_resource type="SpatialMaterial" id=1]
 albedo_texture = ExtResource( 2 )
 uv1_scale = Vector3( 10, 10, 10 )
 
-[node name="Game" type="Spatial"]
+[sub_resource type="SpatialMaterial" id=2]
+albedo_texture = ExtResource( 2 )
+
+[node name="World" type="Spatial"]
+script = ExtResource( 4 )
 
 [node name="Players" type="Spatial" parent="." groups=["Players"]]
-
-[node name="dummy_head4" type="CSGSphere" parent="Players"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 13.1399, 26.3716 )
-use_collision = true
-radius = 2.49633
-material = SubResource( 2 )
-
-[node name="dummy_body4" type="CSGSphere" parent="Players"]
-transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 15.0266, 26.3716 )
-use_collision = true
-material = SubResource( 2 )
-
-[node name="dummy_head2" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 10.3507, -11.527 )
-use_collision = true
-radius = 2.49633
-material = SubResource( 2 )
-
-[node name="dummy_body2" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 13.2399, -11.5634 )
-use_collision = true
-material = SubResource( 2 )
-
-[node name="dummy_head3" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 4.78191, -86.9601 )
-use_collision = true
-radius = 2.49633
-material = SubResource( 2 )
-
-[node name="dummy_body3" type="CSGSphere" parent="Players"]
-transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 7.67118, -86.9965 )
-use_collision = true
-material = SubResource( 2 )
 
 [node name="Player" parent="Players" instance=ExtResource( 1 )]
 transform = Transform( -0.992778, 0, 0.119964, 0, 1, 0, -0.119964, 0, -0.992778, 0, 1.03673, 0 )
@@ -156,5 +125,38 @@ material = SubResource( 1 )
 transform = Transform( 1, 0, 0, 0, -0.866025, 0.5, 0, -0.5, -0.866025, 0, 29.4039, -119.444 )
 light_energy = 0.583
 shadow_enabled = true
+
+[node name="dummy_head4" type="CSGSphere" parent="Environment"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 13.1399, 26.3716 )
+use_collision = true
+radius = 2.49633
+material = SubResource( 2 )
+
+[node name="dummy_body4" type="CSGSphere" parent="Environment"]
+transform = Transform( 0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 15.0266, 26.3716 )
+use_collision = true
+material = SubResource( 2 )
+
+[node name="dummy_head2" type="CSGSphere" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 10.3507, -11.527 )
+use_collision = true
+radius = 2.49633
+material = SubResource( 2 )
+
+[node name="dummy_body2" type="CSGSphere" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -31.0873, 13.2399, -11.5634 )
+use_collision = true
+material = SubResource( 2 )
+
+[node name="dummy_head3" type="CSGSphere" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 4.78191, -86.9601 )
+use_collision = true
+radius = 2.49633
+material = SubResource( 2 )
+
+[node name="dummy_body3" type="CSGSphere" parent="Environment"]
+transform = Transform( 1, 0, 0, 0, 0.999921, 0.0126009, 0, -0.0126009, 0.999921, -5.91025, 7.67118, -86.9965 )
+use_collision = true
+material = SubResource( 2 )
 
 [node name="UI" parent="." instance=ExtResource( 3 )]

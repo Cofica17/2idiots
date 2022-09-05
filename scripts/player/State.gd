@@ -32,13 +32,17 @@ func get_class():
 func _physics_process():
 	if is_scope_in():
 		player.emit_signal("scope_in", player.fov_scope_in_sec)
+		Server.send_player_scope_in()
 	if is_scope_out():
 		player.emit_signal("scope_out", player.fov_scope_out_sec)
+		Server.send_player_scope_out()
 	
 	if is_secondary_basic_attack():
-		player.basic_attack.secondary_attack()
+		player.basic_attack.secondary_attack(player.get_aim_point())
+		Server.send_player_basic_attack(BasicAttack.ATTACK.SECONDARY, player.get_aim_point())
 	elif is_auto_attack():
-		player.basic_attack.primary_attack()
+		player.basic_attack.primary_attack(player.get_aim_point())
+		Server.send_player_basic_attack(BasicAttack.ATTACK.PRIMARY, player.get_aim_point())
 
 func exit():
 	pass

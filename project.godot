@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Spatial",
 "class": "BasicAttack",
 "language": "GDScript",
-"path": "res://spells/BasicAttack.gd"
+"path": "res://spells/basics/BasicAttack.gd"
 }, {
 "base": "State",
 "class": "Crouch",

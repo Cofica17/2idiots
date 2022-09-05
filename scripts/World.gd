@@ -54,4 +54,32 @@ func receive_player_animation(data):
 	
 	var p = get_player_clone(data.I)
 	if p:
-		p.state_machine.travel(data["A"])
+		#print(data["A"])
+		#p.state_machine.travel(data["A"])
+		p.animation_tree["parameters/state/current"] = data["A"]
+
+func receive_player_basic_attack(data):
+	if data["I"] == Server.network.get_unique_id():
+		return
+	
+	var p = get_player_clone(data.I)
+	if p:
+		match data.A:
+			BasicAttack.ATTACK.PRIMARY:
+				p.basic_attack.primary_attack(data.P)
+			BasicAttack.ATTACK.SECONDARY:
+				p.basic_attack.secondary_attack(data.P)
+
+func receive_player_scope_in(id):
+	if id == Server.network.get_unique_id():
+		return
+	
+	var p = get_player_clone(id)
+	p.scope_in()
+
+func receive_player_scope_out(id):
+	if id == Server.network.get_unique_id():
+		return
+	
+	var p = get_player_clone(id)
+	p.scope_out()

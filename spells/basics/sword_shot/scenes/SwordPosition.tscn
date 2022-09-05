@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://spells/basics/sword_shot/scenes/SwordPosition.gd" type="Script" id=1]
+
+
+[node name="SwordPosition" type="Position3D"]
+script = ExtResource( 1 )

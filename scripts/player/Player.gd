@@ -7,7 +7,7 @@ onready var camera_controller = $CameraController
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
-export var BasicAttack:PackedScene = preload("res://spells/sword_shot/SwordShot.tscn")
+export var Basic_Attack:PackedScene = preload("res://spells/basics/sword_shot/SwordShot.tscn")
 export var debug_infinite_stamina:bool = false
 export var running_speed = 15
 export var walking_speed = 5
@@ -46,7 +46,7 @@ signal scope_in(time)
 signal scope_out(time)
 
 func _ready():
-	basic_attack = BasicAttack.instance()
+	basic_attack = Basic_Attack.instance()
 	add_child(basic_attack)
 	connect("scope_in", basic_attack, "_on_scope_in")
 	connect("scope_out", basic_attack, "_on_scope_out")

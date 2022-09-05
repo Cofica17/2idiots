@@ -13,8 +13,6 @@ func get_class() -> String: return "Run"
 func _physics_process():
 	._physics_process()
 	
-	if is_auto_attack():
-		player.player_attack.attack()
 	if Input.is_action_just_pressed(DASH) and player.get_can_dash():
 		locomotion.set_dash_state()
 		return

@@ -10,9 +10,6 @@ func get_class() -> String: return "Fall"
 func _physics_process():
 	._physics_process()
 	
-	if is_auto_attack():
-		player.player_attack.attack()
-		
 	if player.is_on_floor():
 		player.is_jumping = false
 		player.is_double_jumping = false

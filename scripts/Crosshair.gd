@@ -6,7 +6,7 @@ onready var min_recoil = player.player_locomotion.state.min_recoil
 onready var max_recoil = player.player_locomotion.state.max_recoil
 
 export var crosshair_reduction_time = 0.3
-export var crosshair_offset = 0.015
+export var crosshair_offset = 0
 
 var current_recoil = 1
 var time = 0

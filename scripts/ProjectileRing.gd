@@ -3,7 +3,7 @@ extends Spatial
 onready var projectile = load("res://scenes/Projectile.tscn")
 onready var player = Nodes.get_player()
 
-export var projectile_number = 5
+export var projectile_number = 2
 export var radius = 10
 export var rotation_angle_y = 0.02
 export var rotation_angle_x = 0.0025
@@ -20,8 +20,7 @@ func _physics_process(delta):
 
 func render_projectiles() -> void:
 	for i in range(0, projectile_number):
-		var p = null
-		p = projectile.instance()
+		var p = projectile.instance()
 		var x = sqrt(radius) * cos(projectile_angle_distance * i)
 		var y = sqrt(radius) * sin(projectile_angle_distance * i) 
 		p.translation = Vector3.ZERO + Vector3(x,y,0)

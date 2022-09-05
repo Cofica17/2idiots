@@ -6,7 +6,7 @@ var projectile_instance
 var player:KinematicBody
 var player_camera = null
 var bullet_direction = null
-var spell_strength := Time
+#var spell_strength := Time
 
 func _init(_player):
 	player = _player

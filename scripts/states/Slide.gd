@@ -16,9 +16,6 @@ func _physics_process():
 	slide_speed = lerp(slide_speed, 0, player.stopping_speed_slide)
 	move(slide_speed)
 	
-	if is_auto_attack():
-		player.player_attack.attack()
-		
 	if player.velocity.length() <= player.slide_idle_treshold:
 		if is_crouch():
 			locomotion.set_crouch_state()

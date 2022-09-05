@@ -31,10 +31,14 @@ func get_class():
 
 func _physics_process():
 	if is_scope_in():
-		player.emit_signal("scope_in")
+		player.emit_signal("scope_in", player.fov_scope_in_sec)
 	if is_scope_out():
-		player.emit_signal("scope_out")
-	pass
+		player.emit_signal("scope_out", player.fov_scope_out_sec)
+	
+	if is_secondary_basic_attack():
+		player.basic_attack.secondary_attack()
+	elif is_auto_attack():
+		player.basic_attack.primary_attack()
 
 func exit():
 	pass
@@ -74,10 +78,13 @@ func is_direction() -> bool:
 	return is_forward() or is_left() or is_right() or is_back()
 
 func is_scope_in() -> bool:
-	return Input.is_action_just_pressed(SCOPE)
+	return Input.is_action_pressed(SCOPE) and player.camera.fov == player.camera_controller.field_of_view
 	
 func is_scope_out() -> bool:
 	return Input.is_action_just_released(SCOPE)
+
+func is_secondary_basic_attack() -> bool:
+	return is_auto_attack() and player.camera.fov == player.camera_controller.scope_field_of_view
 
 func play_animation(anim):
 	if player.animation_tree["parameters/state/current"] == anim:

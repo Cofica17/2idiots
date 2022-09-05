@@ -12,3 +12,10 @@ transform = Transform( -1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.8,
 [node name="Camera" type="Camera" parent="InnerGimbal"]
 transform = Transform( 1, 1.42634e-08, 1.17141e-09, -1.42634e-08, 0.986601, 0.163154, 1.17141e-09, -0.163154, 0.986601, -1.40151e-07, 0.597264, 1.60314 )
 current = true
+near = 0.01
+far = 8192.0
+
+[node name="RayCast" type="RayCast" parent="InnerGimbal/Camera"]
+enabled = true
+cast_to = Vector3( 0, 0, -1000 )
+collide_with_areas = true

@@ -7,6 +7,7 @@ onready var camera_controller = $CameraController
 onready var animation_player:AnimationPlayer = $AnimationPlayer
 onready var animation_tree:AnimationTree = $AnimationTree
 
+export var BasicAttack:PackedScene = preload("res://spells/sword_shot/SwordShot.tscn")
 export var debug_infinite_stamina:bool = false
 export var running_speed = 15
 export var walking_speed = 5
@@ -26,6 +27,8 @@ export var dash_move_forward = 200
 export var required_dash_stamina = 25
 export var turn_angle = 0.05
 export var gravity = Vector3(0, -70, 0)
+export var fov_scope_in_sec = 0.75
+export var fov_scope_out_sec = 0.25
 
 var dash_stopping_speed = 0.2
 var is_double_jumping = false
@@ -36,12 +39,17 @@ var player_locomotion = PlayerLocomotion.new(self as KinematicBody)
 var player_attack = PlayerAttack.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 var user_id
+var basic_attack:BasicAttack
 
 signal attacked
-signal scope_in
-signal scope_out
+signal scope_in(time)
+signal scope_out(time)
 
 func _ready():
+	basic_attack = BasicAttack.instance()
+	add_child(basic_attack)
+	connect("scope_in", basic_attack, "_on_scope_in")
+	connect("scope_out", basic_attack, "_on_scope_out")
 	user_id = get_tree().get_network_unique_id()
 	#Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player_locomotion.set_state(player_locomotion.idle)
@@ -87,3 +95,17 @@ func get_can_sprint() -> bool:
 		
 func get_can_dash() -> bool:
 	return required_dash_stamina < stamina 
+
+func get_attack_direction():
+	return camera_controller.get_attack_direction()
+
+func get_aim_point():
+	var ray:RayCast = camera_controller.raycast
+	var point
+	
+	if ray.is_colliding():
+		point = ray.get_collision_point()
+	else:
+		point = ray.global_transform.translated(ray.cast_to).origin
+	
+	return point

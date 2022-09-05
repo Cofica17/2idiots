@@ -1,0 +1,25 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://spells/sword_shot/scenes/SwordPosition.tscn" type="PackedScene" id=2]
+[ext_resource path="res://spells/sword_shot/SwordShot.gd" type="Script" id=16]
+
+[node name="SwordShot" type="Spatial"]
+script = ExtResource( 16 )
+
+[node name="SwordPosition" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, -1.36631, 2.05645, 0 )
+
+[node name="SwordPosition2" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, -0.944882, 2.69241, 0 )
+
+[node name="SwordPosition3" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, -0.346766, 2.96416, -2.23517e-08 )
+
+[node name="SwordPosition4" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, 0.335675, 2.96416, 0 )
+
+[node name="SwordPosition5" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, 0.973809, 2.61036, 0 )
+
+[node name="SwordPosition6" parent="." instance=ExtResource( 2 )]
+transform = Transform( 1, 0, 0, 0, -0.237228, -0.971454, 0, 0.971454, -0.237228, 1.45618, 1.99061, 0 )

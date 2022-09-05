@@ -11,8 +11,6 @@ func get_class() -> String: return "Walk"
 func _physics_process():
 	._physics_process()
 	
-	if is_auto_attack():
-		player.player_attack.attack()
 	if is_jump():
 		locomotion.set_jump_state()
 		return

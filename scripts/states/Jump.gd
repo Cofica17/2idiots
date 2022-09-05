@@ -11,9 +11,6 @@ func get_class() -> String: return "Jump"
 func _physics_process():
 	._physics_process()
 	
-	if is_auto_attack():
-		player.player_attack.attack()
-		
 	if not player.is_jumping:
 		player.is_jumping = true
 		player.velocity.y = player.jump_strength

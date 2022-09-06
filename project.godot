@@ -105,7 +105,12 @@ Nodes="*res://scripts/singletons/Nodes.gd"
 [display]
 
 window/size/width=1600
-window/size/height=800
+window/size/height=1000
+window/size/fullscreen=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/scatter/plugin.cfg" )
 
 [gui]
 

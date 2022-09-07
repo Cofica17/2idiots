@@ -13,6 +13,8 @@ onready var poison_trail = load("res://scenes/ProjectileParticles/Poison_Trail.t
 onready var wind_bolt = load("res://scenes/ProjectileParticles/Wind_Bolt.tscn")
 onready var wind_trail = load("res://scenes/ProjectileParticles/Wind_Trail.tscn")
 
+var player_clone:PlayerClone
+
 func _ready():
 	pass
 	

@@ -2,8 +2,8 @@ extends Node
 
 var network = NetworkedMultiplayerENet.new()
 var port = 7769
-var ip = "127.0.0.1"
-#var ip = "194.36.45.181"
+#var ip = "127.0.0.1"
+var ip = "194.36.45.181"
 var connected = false
 var latency = 0
 var latency_array = []
@@ -82,6 +82,16 @@ remote func receive_player_scope_in(id):
 remote func receive_player_scope_out(id):
 	get_node(world_str).receive_player_scope_out(id)
 
+#TODO: REFACTOR TO BE SERVER-SIDE
+remote func receive_damage(data):
+	if data.I == get_tree().get_network_unique_id():
+		return
+	
+	Nodes.player.receive_damage(data.D)
+
+remote func receive_player_health(data):
+	get_node(world_str).receive_player_health(data)
+
 ########################
 ### FOR SENDING INFO ###
 ########################
@@ -92,15 +102,16 @@ func determine_latency():
 	
 	rpc_id(1, "determine_latency", OS.get_system_time_msecs())
 
-func send_player_transform(transform):
+func send_player_info(transform, aim_point):
 	if not connected:
 		return
 	
 	var d = {
 		"T" : client_clock,
-		"P" : transform
+		"P" : transform,
+		"AP" : aim_point
 	}
-	rpc_unreliable_id(1, "receive_player_transform", d)
+	rpc_unreliable_id(1, "receive_player_info", d)
 
 func send_player_animation(anim):
 	if not connected:
@@ -125,3 +136,10 @@ func send_player_scope_in():
 
 func send_player_scope_out():
 	rpc_id(1, "receive_player_scope_out")
+
+#TODO: REFACTOR TO BE SERVER-SIDE
+func send_damage(dmg):
+	rpc_id(1, "receive_player_damage", dmg)
+
+func send_player_health(health):
+	rpc_id(1, "receive_player_health", health)

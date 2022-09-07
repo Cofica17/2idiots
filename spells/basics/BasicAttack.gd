@@ -20,3 +20,6 @@ func _on_scope_in(time):
 
 func _on_scope_out(time):
 	pass
+
+func is_on_client() -> bool:
+	return get_parent() == Nodes.player

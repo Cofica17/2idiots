@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/PlayerAttack.gd"
 }, {
+"base": "KinematicBody",
+"class": "PlayerClone",
+"language": "GDScript",
+"path": "res://scripts/player/PlayerClone.gd"
+}, {
 "base": "Reference",
 "class": "PlayerLocomotion",
 "language": "GDScript",
@@ -83,6 +88,7 @@ _global_script_class_icons={
 "Jump": "",
 "Player": "",
 "PlayerAttack": "",
+"PlayerClone": "",
 "PlayerLocomotion": "",
 "Run": "",
 "Slide": "",

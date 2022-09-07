@@ -3,7 +3,6 @@
 [ext_resource path="res://spells/basics/sword_shot/scenes/SwordPosition.tscn" type="PackedScene" id=2]
 [ext_resource path="res://spells/basics/sword_shot/SwordShot.gd" type="Script" id=16]
 
-
 [node name="SwordShot" type="Spatial"]
 script = ExtResource( 16 )
 

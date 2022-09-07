@@ -40,10 +40,12 @@ var player_attack = PlayerAttack.new(self as KinematicBody)
 var velocity = Vector3.ZERO
 var user_id
 var basic_attack:BasicAttack
+var health = 100
 
 signal attacked
 signal scope_in(time)
 signal scope_out(time)
+signal health_changed
 
 func _ready():
 	basic_attack = Basic_Attack.instance()
@@ -63,7 +65,7 @@ func _input(event):
 			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _physics_process(delta):
-	Server.send_player_transform(global_transform)
+	Server.send_player_info(global_transform, get_aim_point())
 	apply_gravity(delta)
 	apply_stamina() 
 	player_locomotion._physics_process()
@@ -109,3 +111,9 @@ func get_aim_point():
 		point = ray.global_transform.translated(ray.cast_to).origin
 	
 	return point
+
+func receive_damage(dmg):
+	health -= dmg
+	emit_signal("health_changed")
+	$Health.text = str(health)
+	Server.send_player_health(health)

@@ -23,23 +23,45 @@ func _physics_process(delta):
 		return
 	
 	var render_time = Server.client_clock - interpolation_offset 
-	while world_state_buffer.size() > 2 and render_time > world_state_buffer[1].T:
+	while world_state_buffer.size() > 2 and render_time > world_state_buffer[2].T:
 		world_state_buffer.remove(0)
-	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T) 
 	
-	for player_id in world_state_buffer[1]:
-		if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
-			continue
-		if not world_state_buffer[0].has(player_id):
-			continue
-		var player_clone = get_player_clone(player_id)
-		if player_clone:
-			var new_transform = world_state_buffer[0][player_id].P.interpolate_with(world_state_buffer[1][player_id].P, interpolation_factor)
-			player_clone.global_transform = new_transform
-		else:
-			var clone = PLAYER_CLONE.instance()
-			clone.user_id = player_id
-			players.add_child(clone)
+	if world_state_buffer.size() > 2:
+		var interpolation_factor = float(render_time - world_state_buffer[1].T) / float(world_state_buffer[2].T - world_state_buffer[1].T) 
+		for player_id in world_state_buffer[2]:
+			if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
+				continue
+			if not world_state_buffer[1].has(player_id):
+				continue
+			var player_clone = get_player_clone(player_id)
+			if player_clone:
+				var new_transform = world_state_buffer[1][player_id].P.interpolate_with(world_state_buffer[2][player_id].P, interpolation_factor)
+				var new_aim_point = world_state_buffer[1][player_id].AP.linear_interpolate(world_state_buffer[2][player_id].AP, interpolation_factor)
+				player_clone.global_transform = new_transform
+				player_clone.aim_point = new_aim_point 
+			else:
+				var clone = PLAYER_CLONE.instance()
+				clone.user_id = player_id
+				players.add_child(clone)
+				Nodes.player_clone = clone
+	elif render_time > world_state_buffer[1].T:
+		var extrapolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T)
+		for player_id in world_state_buffer[1]:
+			if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
+				continue
+			if not world_state_buffer[0].has(player_id):
+				continue
+			var player_clone = get_player_clone(player_id)
+			if player_clone:
+				var position_delta = (world_state_buffer[1][player_id].P.origin - world_state_buffer[0][player_id].P.origin)
+				#var rotation_delta = (world_state_buffer[1][player_id].P.basis - world_state_buffer[0][player_id].P.basis)
+				var aim_point_delta = (world_state_buffer[1][player_id].AP - world_state_buffer[0][player_id].AP)
+				var new_position = world_state_buffer[1][player_id].P.origin + (position_delta * extrapolation_factor)
+				#var new_rotation = world_state_buffer[1][player_id].P.basis + (position_delta * extrapolation_factor)
+				var new_aim_point = world_state_buffer[1][player_id].AP + (aim_point_delta * extrapolation_factor)
+				player_clone.global_transform.origin = new_position
+				#player_clone.global_transform.basis = new_rotation
+				player_clone.aim_point = new_aim_point 
 
 func receive_world_state(world_state:Dictionary):
 	if world_state["T"] < last_world_state_time:
@@ -83,3 +105,11 @@ func receive_player_scope_out(id):
 	
 	var p = get_player_clone(id)
 	p.scope_out()
+
+func receive_player_health(data):
+	if data.id == Server.network.get_unique_id():
+		return
+	
+	var clone = get_player_clone(data.id)
+	if clone:
+		clone.set_health(data.health)

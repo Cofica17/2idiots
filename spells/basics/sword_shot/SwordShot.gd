@@ -4,6 +4,10 @@ var reload_time = 1.15
 var rng = RandomNumberGenerator.new()
 var can_shoot_primary = true
 
+func _ready():
+	for c in get_children():
+		c.is_client = is_on_client()
+
 func primary_attack(global_pos):
 	if not can_shoot_primary:
 		return

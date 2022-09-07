@@ -8,8 +8,10 @@ var look = true
 var speed
 var direction
 var can_shoot = false
+var is_client = true
 
 func _ready():
+	add_to_group("DamageDealer")
 	animation_player.connect("animation_finished", self, "_on_anim_finished")
 	area.connect("body_entered", self, "_on_body_entered")
 
@@ -17,7 +19,10 @@ func _physics_process(delta):
 	if shoot:
 		global_transform.origin += direction * speed * delta
 	elif look:
-		look_at(Nodes.player.get_aim_point(), Vector3.UP)
+		if is_client:
+			look_at(Nodes.player.get_aim_point(), Vector3.UP)
+		else:
+			look_at(Nodes.player_clone.get_aim_point(), Vector3.UP)
 
 func spawn():
 	animation_player.play("show_sword")

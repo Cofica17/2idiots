@@ -27,4 +27,7 @@ margin_left = 11.0
 margin_top = 8.0
 margin_right = 56.0
 margin_bottom = 24.0
+custom_colors/font_color = Color( 0.176471, 1, 0, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "ping: "

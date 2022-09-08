@@ -1,10 +1,10 @@
 extends Spatial
 
-#[MostRecetPasState, NearestFutureState, AnyOtherFutureStatesRecevied]
+#[PastState, MostRecetPastState, NearestFutureState, AnyOtherFutureStatesRecevied]
 var world_state_buffer := []
 var last_world_state_time:float = 0.0
 
-const interpolation_offset = 100
+const interpolation_offset = 20
 const PLAYER_CLONE = preload("res://scenes/PlayerClone.tscn")
 
 onready var players = $Players

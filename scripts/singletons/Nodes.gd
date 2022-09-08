@@ -1,6 +1,7 @@
 extends Node
 
 onready var player = get_node("/root/World/Players/Player")
+onready var UI = get_node("/root/World/UI")
 onready var crosshair = get_node("/root/World/UI/CrosshairContainer")
 onready var frostbolt_bolt = load("res://scenes/ProjectileParticles/Frost_Bolt.tscn")
 onready var frostbolt_trail = load("res://scenes/ProjectileParticles/Frost_Trail.tscn")

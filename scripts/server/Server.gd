@@ -51,6 +51,7 @@ func _physics_process(delta):
 remote func receive_server_time(server_time, client_time):
 	latency = (OS.get_system_time_msecs() - client_time) / 2
 	client_clock = server_time + latency
+	Nodes.UI.set_ping(latency*2)
 
 remote func return_latency(client_time):
 	latency_array.append((OS.get_system_time_msecs() - client_time)/2)
@@ -66,6 +67,7 @@ remote func return_latency(client_time):
 		delta_latency = (total_latency / latency_array.size()) - latency
 		latency = total_latency / latency_array.size()
 		latency_array.clear()
+		Nodes.UI.set_ping(latency*2)
 
 remote func receive_world_state(world_state:Dictionary):
 	get_node(world_str).receive_world_state(world_state)

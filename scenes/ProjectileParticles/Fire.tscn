@@ -34,6 +34,7 @@ linear_accel_random = 1.0
 angle = 1.0
 angle_random = 1.0
 angle_curve = SubResource( 2 )
+scale = 0.7
 scale_random = 0.8
 scale_curve = SubResource( 5 )
 color_ramp = SubResource( 3 )
@@ -58,6 +59,7 @@ material = SubResource( 7 )
 [node name="FireEffect" type="Spatial"]
 
 [node name="Particles" type="Particles" parent="."]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0, 0 )
 amount = 200
 lifetime = 0.5
 randomness = 1.0

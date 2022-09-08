@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/NP/Ruins/torches.tscn" type="PackedScene" id=1]
+[ext_resource path="res://assets/NP/Trees/Collision/Tree2_1_C.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/ProjectileParticles/Fire.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/NP/Ruins/Ruins4.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/NP/Ruins/Ruins1.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/NP/Crystals/Crystal3_blue.tscn" type="PackedScene" id=6]
+
+[node name="Ruin&Tree" type="Spatial"]
+
+[node name="Ruins2" parent="." instance=ExtResource( 5 )]
+
+[node name="Ruins3" parent="." instance=ExtResource( 4 )]
+transform = Transform( -1, 0, -8.74228e-08, 0, 1.1, 0, 8.74228e-08, 0, -1, 1.57941, 0, 0 )
+skeleton = NodePath("../Ruins2")
+
+[node name="Ruins4" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 0.7, 0, 0, 0, 1, -1.54369, 0, 0 )
+skeleton = NodePath("../Ruins2")
+
+[node name="torches" parent="." instance=ExtResource( 1 )]
+transform = Transform( -2.18557e-08, 0, 0.5, 0, 0.5, 0, -0.5, 0, -2.18557e-08, -0.778509, 3.17292, 0 )
+
+[node name="Tree6_3" parent="." instance=ExtResource( 2 )]
+transform = Transform( -0.218501, 0, 0.975837, 0, 1, 0, -0.975837, 0, -0.218501, 2.72883, -0.0217369, -0.13242 )
+skeleton = NodePath("")
+
+[node name="FireEffect" parent="." instance=ExtResource( 3 )]
+transform = Transform( 0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, -0.834193, 4.18383, 0.145545 )
+
+[node name="Crystal3" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.860119, -0.510093, 0, 0.384586, 0.64849, 0.656928, -0.335094, -0.565036, 0.753953, 1.35203, 3.35999, -0.0287007 )
+
+[node name="Crystal4" parent="." instance=ExtResource( 6 )]
+transform = Transform( 0.954704, 0.297558, 0, -0.224345, 0.719802, 0.656928, 0.195474, -0.627172, 0.753953, 1.35203, 3.45729, 0.215356 )
+
+[node name="Crystal5" parent="." instance=ExtResource( 6 )]
+transform = Transform( -0.774667, -0.241445, -0.584462, 0.142213, 0.834049, -0.533045, 0.616171, -0.49605, -0.611774, 1.60957, 3.39412, -0.189736 )

@@ -42,6 +42,7 @@ func _physics_process(delta):
 	if decimal_collector >= 1.00:
 		client_clock += 1
 		decimal_collector -= 1.00
+	print(client_clock)
 
 
 ##############
@@ -52,6 +53,7 @@ remote func receive_server_time(server_time, client_time):
 	latency = (OS.get_system_time_msecs() - client_time) / 2
 	client_clock = server_time + latency
 	Nodes.UI.set_ping(latency*2)
+	print(server_time)
 
 remote func return_latency(client_time):
 	latency_array.append((OS.get_system_time_msecs() - client_time)/2)

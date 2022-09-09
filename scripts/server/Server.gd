@@ -1,12 +1,12 @@
 extends Node
 
 var network = NetworkedMultiplayerENet.new()
-var port = 7769
+var port = 1909
 #var ip = "127.0.0.1"
 var ip = "194.36.45.181"
 var connected = false
 var latency = 0
-var latency_array = []
+var latency_array = [] 
 var client_clock = 0.0
 var delta_latency = 0
 var decimal_collector:float = 0.0
@@ -42,7 +42,7 @@ func _physics_process(delta):
 	if decimal_collector >= 1.00:
 		client_clock += 1
 		decimal_collector -= 1.00
-	print(client_clock)
+	#print(client_clock)
 
 
 ##############

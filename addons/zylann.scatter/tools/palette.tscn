@@ -18,7 +18,7 @@ margin_right = -4.0
 margin_bottom = -4.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-margin_right = 142.0
+margin_right = 718.0
 margin_bottom = 20.0
 
 [node name="AddButton" type="Button" parent="VBoxContainer/HBoxContainer"]
@@ -34,9 +34,10 @@ text = "Remove"
 
 [node name="ItemList" type="ItemList" parent="VBoxContainer"]
 margin_top = 24.0
-margin_right = 142.0
-margin_bottom = 592.0
+margin_right = 718.0
+margin_bottom = 992.0
 size_flags_vertical = 3
+
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/AddButton" to="." method="_on_AddButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/RemoveButton" to="." method="_on_RemoveButton_pressed"]
 [connection signal="item_selected" from="VBoxContainer/ItemList" to="." method="_on_ItemList_item_selected"]

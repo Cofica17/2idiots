@@ -110,7 +110,7 @@ window/size/fullscreen=true
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/scatter/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/zylann.scatter/plugin.cfg" )
 
 [gui]
 

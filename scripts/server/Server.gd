@@ -5,10 +5,10 @@ var port = 1909
 #var ip = "127.0.0.1"
 var ip = "194.36.45.181"
 var connected = false
-var latency = 0
+var latency:float = 0.0
 var latency_array = [] 
-var client_clock = 0.0
-var delta_latency = 0
+var client_clock:float = 0.0
+var delta_latency:float = 0.0
 var decimal_collector:float = 0.0
 var world_str = "../World"
 
@@ -53,16 +53,15 @@ remote func receive_server_time(server_time, client_time):
 	latency = (OS.get_system_time_msecs() - client_time) / 2
 	client_clock = server_time + latency
 	Nodes.UI.set_ping(latency*2)
-	print(server_time)
 
 remote func return_latency(client_time):
 	latency_array.append((OS.get_system_time_msecs() - client_time)/2)
 	if latency_array.size() == 9:
-		var total_latency = 0
+		var total_latency = 0.0
 		latency_array.sort()
 		var mid_point = latency_array[4]
 		for i in range(latency_array.size()-1, -1, -1):
-			if latency_array[i] > (2*mid_point) and latency_array[i] > 20:
+			if latency_array[i] > (2*mid_point):
 				latency_array.remove(i)
 			else:
 				total_latency += latency_array[i]
@@ -111,7 +110,7 @@ func send_player_info(transform, aim_point):
 		return
 	
 	var d = {
-		"T" : client_clock,
+		"T" : OS.get_system_time_msecs(),
 		"P" : transform,
 		"AP" : aim_point
 	}

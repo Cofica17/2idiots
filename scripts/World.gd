@@ -4,7 +4,7 @@ extends Spatial
 var world_state_buffer := []
 var last_world_state_time:float = 0.0
 
-const interpolation_offset = 20
+const interpolation_offset = 10
 const PLAYER_CLONE = preload("res://scenes/PlayerClone.tscn")
 
 onready var players = $Players
@@ -23,12 +23,17 @@ func _physics_process(delta):
 		return
 	
 	var render_time = Server.client_clock - interpolation_offset 
-	while world_state_buffer.size() > 2 and render_time > world_state_buffer[2].T:
+	#var render_time = OS.get_system_time_msecs() - interpolation_offset 
+	while world_state_buffer.size() > 2 and render_time > world_state_buffer[1].T:
 		world_state_buffer.remove(0)
 	
 	#if world_state_buffer.size() > 2:
-	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T) 
-	for player_id in world_state_buffer[1]:
+	var interpolation_factor = float(render_time - world_state_buffer[0].T) / float(world_state_buffer[1].T - world_state_buffer[0].T)
+	#print(float(render_time - world_state_buffer[0].T))
+	#print(float(world_state_buffer[1].T - world_state_buffer[0].T))
+	#print(interpolation_factor)
+	#print("****")
+	for player_id in world_state_buffer[1].keys():
 		if str(player_id) == "T" or player_id == get_tree().get_network_unique_id():
 			continue
 		if not world_state_buffer[0].has(player_id):
